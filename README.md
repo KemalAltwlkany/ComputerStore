@@ -1,0 +1,1 @@
+This java project is made as an assignement for class Software Development SDEV4009.
