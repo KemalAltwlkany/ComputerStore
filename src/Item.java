@@ -4,4 +4,11 @@ public class Item {
     private int baseRentPrice;
     private int basePurchasePrice;
 
+    public Item(){
+        name = null;
+        weight = 0;
+        baseRentPrice = 0;
+        basePurchasePrice = 0;
+    }
+
 }
