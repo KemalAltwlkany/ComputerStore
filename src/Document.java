@@ -36,7 +36,7 @@ public class Document {
         this.number = number;
         this.issueDate = issueDate;
         this.authority = authority;
-        if (ValidateType(type)){
+        if (validateType(type)){
             this.type = type;
         }
         else{
@@ -50,7 +50,7 @@ public class Document {
         this.authority = authority;
         //FEATURE - check whether the d/m/y passed as arguments are valid and throw exception?
         issueDate = LocalDate.of(year, month, day);
-        if (ValidateType(type)){
+        if (validateType(type)){
             this.type = type;
         }
         else{
@@ -71,7 +71,7 @@ public class Document {
 
     //method checks whether the string passed as an argument is a valid document type.
     //the valid documents accepted are contained within the validDocumentTypes array.
-    private Boolean ValidateType(String type){
+    private Boolean validateType(String type){
         for(String validType : Document.validDocumentTypes){
             if (validType.equals(type)) {
                 return true;

@@ -11,8 +11,8 @@ public class Book extends Item {
         publishDate = LocalDate.now();
     }
 
-    public Book(String title, String author, LocalDate publishDate, String name, int baseRentPrice, int basePurchasePrice){
-        super(name, baseRentPrice, basePurchasePrice);
+    public Book(String title, String author, LocalDate publishDate, double baseRentPrice, double basePurchasePrice){
+        super("Book", baseRentPrice, basePurchasePrice);
         this.title = title;
         this.author = author;
         this.publishDate = publishDate;

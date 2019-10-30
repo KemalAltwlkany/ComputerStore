@@ -1,8 +1,8 @@
-public abstract class Item {
+public abstract class Item implements  IItem{
     private String name;
     private String description;
-    private int baseRentPrice; //per day by definition
-    private int basePurchasePrice;
+    private double baseRentPrice; //per day by definition
+    private double basePurchasePrice;
     //FEATURE - add field: Boolean available, to identify whether the item is rented or not
     //FEATURE - static counter which identifies each item, uniquely
 
@@ -20,7 +20,7 @@ public abstract class Item {
         basePurchasePrice = 0;
     }
 
-    public Item(String name, int baseRentPrice, int basePurchasePrice){
+    public Item(String name, double baseRentPrice, double basePurchasePrice){
         this.name = name;
         this.baseRentPrice = baseRentPrice;
         this.basePurchasePrice = basePurchasePrice;
