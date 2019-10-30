@@ -1,46 +1,61 @@
+//TO BE implemented - check whether the name and surname are less than 20 and 25 characters
+//check whether the age is above 14 to join the club
+//Should be done within the sets. Add the gets as well.
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.Temporal;
 
-public class Person {
+public class Person implements IPerson{
     private String name;
+    private String surname;
     private int age;
-    private String documentInfo;
-    private String documentNumber;
+    private Document document;
+    private LocalDate birthDate;
     private LocalDate joiningDate;
 //    private String status;
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public Person(){
         name = "Fake_person";
-        age = 18;
-        documentInfo = null;
-        documentNumber = null;
+        surname = "Fake_surname";
+        age = 19; //default age will be 19 years, born 01.01.2000.
+        document = new Document();
+        birthDate = LocalDate.of(2000, 1, 1);
         joiningDate = LocalDate.now();
     }
 
     public Person(Person pers){
         this.name = pers.name;
+        this.surname = pers.surname;
         this.age = pers.age;
-        this.documentInfo = pers.documentInfo;
-        this.documentNumber = pers.documentNumber;
+        this.document = new Document(pers.document); // deep copy
+        this.birthDate = pers.birthDate;
         this.joiningDate = pers.joiningDate;
     }
 
-    public Person(String name, int age){
+    public Person(String name, String surname){
         this.name = name;
-        this.age = age;
-        this.documentInfo = null;
-        this.documentNumber = null;
+        this.surname = surname;
+        this.age = 19;
+        this.document = new Document();
+        this.birthDate = LocalDate.of(2000, 1, 1);
         this.joiningDate = LocalDate.now();
     }
 
-    public Person(String name, int age, String documentInfo, String documentNumber, LocalDate joiningDate){
+    public Person(String name, String surname, int age, Document doc, LocalDate birthDate, LocalDate joiningDate){
         this.name = name;
-        this.age = age;
-        this.documentInfo = documentInfo;
-        this.documentNumber = documentNumber;
+        this.surname = surname;
+        if (IPerson.ValidateAge(age, birthDate)){
+            this.age = age;
+            this.birthDate = birthDate;
+        }
+        else{
+            //FEATURE - throw exception?
+            this.age = 19;
+            this.birthDate = LocalDate.of(2000, 1, 1);
+        }
+        this.document = new Document(doc); //deep copy
         this.joiningDate = joiningDate;
     }
 
@@ -48,73 +63,37 @@ public class Person {
     public String toString() {
         return "Person{" +
                 "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
                 ", age=" + age +
-                ", documentInfo='" + documentInfo + '\'' +
-                ", documentNumber='" + documentNumber + '\'' +
-                ", joiningDate=" + joiningDate +
+                ", document=" + document +
+                ", birthDate=" + birthDate.format(formatter) +
+                ", joiningDate=" + joiningDate.format(formatter) +
                 '}';
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getDocumentInfo() {
-        return documentInfo;
-    }
-
-    public void setDocumentInfo(String documentInfo) {
-        this.documentInfo = documentInfo;
-    }
-
-    public String getDocumentNumber() {
-        return documentNumber;
-    }
-
-    public void setDocumentNumber(String documentNumber) {
-        this.documentNumber = documentNumber;
-    }
-
-    public LocalDate getJoiningDate() {
-        return joiningDate;
-    }
-
-    public void setJoiningDate(LocalDate joiningDate) {
-        this.joiningDate = joiningDate;
-    }
-
-    public void setJoiningDate(int year, int month, int day){
-        joiningDate = LocalDate.of(year, month, day);
-    }
-
-    private Period subtractTwoDates(LocalDate firstDate, LocalDate secondDate){
+    private static Period subtractTwoDates(LocalDate firstDate, LocalDate secondDate){
         return Period.between(firstDate, secondDate);
     }
 
     public String memberFor(){
-        return subtractTwoDates(joiningDate, LocalDate.now()).toString();
+        Period p = Person.subtractTwoDates(joiningDate, LocalDate.now());
+        return String.format("%d years, %d months, %d days", p.getYears(), p.getMonths(), p.getDays());
+        //String str = String.valueOf(per.getYears()) + String.valueOf(per.getMonths()) +  String.valueOf(per.getDays());
     }
 
-//    public String membersince(){
-//        LocalDate example = LocalDate.of(2007, 10, 19);
-//        Period temp = Period.between(example, joiningDate);
-//        System.out.println("Member for: " + temp.getYears() + " years, " +
-//                temp.getMonths() + " months,  " +
-//                temp.getDays() + " days.");
-//        return temp.toString();
-//    }
+    public String memberSince(){
+        return joiningDate.format(formatter);
+    }
 
+    /*
+    public String membersince(){
+        LocalDate example = LocalDate.of(2007, 10, 19);
+        Period temp = Period.between(example, joiningDate);
+        System.out.println("Member for: " + temp.getYears() + " years, " +
+                temp.getMonths() + " months,  " +
+                temp.getDays() + " days.");
+        return temp.toString();
+    }
+*/
 
 }
