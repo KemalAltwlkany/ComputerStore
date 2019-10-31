@@ -16,8 +16,8 @@ interface IPerson {
 
     String toString();
 
-    String memberFor();
+    String joinedFor();
 
-    String memberSince();
+    String joinedSince();
 
 }

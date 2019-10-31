@@ -6,7 +6,7 @@ public class Book extends Item {
     private LocalDate publishDate;
 
     public Book(){
-        super();
+        super("Book");
         author = null;
         publishDate = LocalDate.now();
     }
@@ -20,10 +20,13 @@ public class Book extends Item {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", publishDate=" + publishDate +
-                '}';
+    return  "Book={" +
+            "title='" + title + '\'' +
+            ", author='" + author + '\'' +
+            ", publishDate=" + publishDate +
+            ", description='" + description + '\'' +
+            ", baseRentPrice=" + baseRentPrice +
+            ", basePurchasePrice=" + basePurchasePrice +
+            '}';
     }
 }

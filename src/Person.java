@@ -6,15 +6,16 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
+//Class could be but doesn't necessarily have to be abstract.
 public class Person implements IPerson{
     private String name;
     private String surname;
     private int age;
     private Document document;
     private LocalDate birthDate;
-    private LocalDate joiningDate;
+    private LocalDate joiningDate; //Interpreted as joining the staff or club, dependent on the child class.
 //    private String status;
-    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    protected static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public Person(){
         name = "Fake_person";
@@ -75,14 +76,39 @@ public class Person implements IPerson{
         return Period.between(firstDate, secondDate);
     }
 
-    public String memberFor(){
+    public String joinedFor(){
         Period p = Person.subtractTwoDates(joiningDate, LocalDate.now());
         return String.format("%d years, %d months, %d days", p.getYears(), p.getMonths(), p.getDays());
         //String str = String.valueOf(per.getYears()) + String.valueOf(per.getMonths()) +  String.valueOf(per.getDays());
     }
 
-    public String memberSince(){
+    public String joinedSince(){
         return joiningDate.format(formatter);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    //returning deep copy instead of reference
+    public Document getDocument() {
+        return new Document(document);
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public LocalDate getJoiningDate() {
+        return joiningDate;
     }
 
     /*
