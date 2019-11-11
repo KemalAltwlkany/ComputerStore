@@ -8,54 +8,44 @@ import java.time.format.DateTimeFormatter;
 
 //Class could be but doesn't necessarily have to be abstract.
 public class Person implements IPerson{
-    private String name;
-    private String surname;
-    private int age;
+    private String name; //max 15 characters
+    private String surname; //max 25 characters
     private Document document;
+    //Due to possible change, age should not be store as a variable, but always computed upon requests.
+    //The class acts as if the age field exists.
     private LocalDate birthDate;
     private LocalDate joiningDate; //Interpreted as joining the staff or club, dependent on the child class.
-//    private String status;
     protected static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public Person(){
         name = "Fake_person";
         surname = "Fake_surname";
-        age = 19; //default age will be 19 years, born 01.01.2000.
         document = new Document();
         birthDate = LocalDate.of(2000, 1, 1);
         joiningDate = LocalDate.now();
     }
 
+    //copy constructor
     public Person(Person pers){
         this.name = pers.name;
         this.surname = pers.surname;
-        this.age = pers.age;
-        this.document = new Document(pers.document); // deep copy
+        this.document = pers.document; // deep copy
         this.birthDate = pers.birthDate;
         this.joiningDate = pers.joiningDate;
     }
 
     public Person(String name, String surname){
-        this.name = name;
-        this.surname = surname;
-        this.age = 19;
+        this.setName(name);
+        this.setSurname(surname);
         this.document = new Document();
         this.birthDate = LocalDate.of(2000, 1, 1);
         this.joiningDate = LocalDate.now();
     }
 
-    public Person(String name, String surname, int age, Document doc, LocalDate birthDate, LocalDate joiningDate){
-        this.name = name;
-        this.surname = surname;
-        if (IPerson.ValidateAge(age, birthDate)){
-            this.age = age;
-            this.birthDate = birthDate;
-        }
-        else{
-            //FEATURE - throw exception?
-            this.age = 19;
-            this.birthDate = LocalDate.of(2000, 1, 1);
-        }
+    public Person(String name, String surname, Document doc, LocalDate birthDate, LocalDate joiningDate){
+        this.setName(name);
+        this.setSurname(surname);
+        this.birthDate = birthDate;
         this.document = new Document(doc); //deep copy
         this.joiningDate = joiningDate;
     }
@@ -65,10 +55,9 @@ public class Person implements IPerson{
         return "Person{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", age=" + age +
                 ", document=" + document +
-                ", birthDate=" + birthDate.format(formatter) +
-                ", joiningDate=" + joiningDate.format(formatter) +
+                ", birthDate=" + birthDate +
+                ", joiningDate=" + joiningDate +
                 '}';
     }
 
@@ -82,33 +71,61 @@ public class Person implements IPerson{
         //String str = String.valueOf(per.getYears()) + String.valueOf(per.getMonths()) +  String.valueOf(per.getDays());
     }
 
-    public String joinedSince(){
-        return joiningDate.format(formatter);
+    public int getAge(){
+        Period p = Person.subtractTwoDates(birthDate, LocalDate.now());
+        return p.getYears();
     }
 
     public String getName() {
         return name;
     }
 
-    public String getSurname() {
+    public void setName(String name) {
+        //Name limited to 15 characters
+        if (name.length() > 15){
+            return;
+        }
+        this.name = name;
+    }
+
+    public String getSurname(){
         return surname;
     }
 
-    public int getAge() {
-        return age;
+    public void setSurname(String surname) {
+        //surname limited to 25 characters
+        if (surname.length() > 25){
+            return;
+        }
+        this.surname = surname;
     }
 
-    //returning deep copy instead of reference
+    //No set for the age attribute. Age can only be modified via the BirthDate attribute.
+
     public Document getDocument() {
-        return new Document(document);
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        //Class document ensures the assigned document is valid.
+        this.document = document;
     }
 
     public LocalDate getBirthDate() {
         return birthDate;
     }
 
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
     public LocalDate getJoiningDate() {
         return joiningDate;
+    }
+
+    public void setJoiningDate(LocalDate joiningDate) {
+        //Class LocalDate takes care of ensuring joiningDate is valid.
+        this.joiningDate = joiningDate;
     }
 
     /*

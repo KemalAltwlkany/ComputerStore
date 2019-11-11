@@ -5,12 +5,12 @@ public class ComputerStore {
     public static void main(String[] args) {
 //        DocumentTest1();
 //        DocumentTest2();
-//        PersonTest1();
-//        PersonTest2();
-//        PersonTest3();
+        PersonTest1();
+        PersonTest2();
+        PersonTest3();
 //        BookTest1();
             //
-        PCTest1();
+     //   PCTest1();
     }
 
     //Tests the constructors and toString of class Document.
@@ -60,7 +60,7 @@ public class ComputerStore {
 
         Document doc4 = new Document();
         LocalDate birthDate = LocalDate.of(1996, 11, 3);
-        Person pers4 = new Person("Kemal", "Alt", 22, doc4, birthDate, LocalDate.now());
+        Person pers4 = new Person("Kemal", "Alt", doc4, birthDate, LocalDate.now());
         System.out.println(pers4);
 
         System.out.println("---------FINISHED PersonTest 1--------");
@@ -75,13 +75,13 @@ public class ComputerStore {
 
         Person pers1 = new Person();
         System.out.println("pers1 is a member for " + pers1.joinedFor());
-        System.out.println("pers1 is a member since " + pers1.joinedSince() );
+        System.out.println("pers1 is a member since " + pers1.getJoiningDate() );
 
         Document doc4 = new Document();
         LocalDate birthDate = LocalDate.of(1996, 11, 3);
-        Person pers4 = new Person("Kemal", "Alt", 22, doc4, birthDate, LocalDate.of(2012, 10, 30));
+        Person pers4 = new Person("Kemal", "Alt", doc4, birthDate, LocalDate.of(2012, 11, 1));
         System.out.println("pers4 is a member for " + pers4.joinedFor());
-        System.out.println("pers4 is a member since " + pers4.joinedSince() );
+        System.out.println("pers4 is a member since " + pers4.getJoiningDate() );
 
         System.out.println("---------FINISHED PersonTest 2--------");
         System.out.println("---------***************************--------");
@@ -94,9 +94,7 @@ public class ComputerStore {
         System.out.println("---------***************************--------");
 
         Document doc1 = new Document();
-        Person pers1 = new Person("AA", "BB", 15, doc1, LocalDate.of(2006, 12, 30), LocalDate.now());
-        //Even though we assigned age 15 and year 2006, the program sets age to 19 and year to 2000 by default
-        //because the passed arguments were incompatible.
+        Person pers1 = new Person("AA", "BB",  doc1, LocalDate.of(2006, 12, 30), LocalDate.now());
         System.out.println(pers1);
 
         System.out.println("---------FINISHED PersonTest 3--------");
