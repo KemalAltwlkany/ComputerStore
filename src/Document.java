@@ -3,8 +3,9 @@ import java.time.format.DateTimeFormatter;
 
 public class Document {
     private String type;
-    private String number; //Unfortunately, a document number is usually an alphanumerical sequence, not an actual num
-    private String authority;
+    //Unfortunately, a document number is usually an alphanumerical sequence, not an actual num, max 20 chars
+    private String number;
+    private String authority; //max 30 chars
     private LocalDate issueDate;
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static String[] validDocumentTypes = {"ID card", "Passport", "Drivers licence", "Student card"};
@@ -25,6 +26,7 @@ public class Document {
         Document.fakeDocNumber = Document.fakeDocNumber + 1;
     }
 
+    //Creates deep copy of object
     public Document(Document doc){
         this.type = doc.type;
         this.number = doc.number;
@@ -33,30 +35,19 @@ public class Document {
     }
 
     public Document(String type, String number, String authority, LocalDate issueDate){
-        this.number = number;
-        this.issueDate = issueDate;
-        this.authority = authority;
-        if (validateType(type)){
-            this.type = type;
-        }
-        else{
-            //FEATURE - throw exception or something else?
-            this.type = "Passport";
-        }
+        this.setType(type);
+        this.setNumber(number);
+        this.setAuthority(authority);
+        this.setIssueDate(issueDate);
     }
 
     public Document(String type, String number, String authority, int day, int month, int year){
-        this.number = number;
-        this.authority = authority;
+        this.setType(type);
+        this.setNumber(number);
+        this.setAuthority(authority);
         //FEATURE - check whether the d/m/y passed as arguments are valid and throw exception?
-        issueDate = LocalDate.of(year, month, day);
-        if (validateType(type)){
-            this.type = type;
-        }
-        else{
-            //throw error or something?
-            this.type = "Passport";
-        }
+        LocalDate x = LocalDate.of(year, month, day);
+        this.setIssueDate(x);
     }
 
     @Override
@@ -71,12 +62,59 @@ public class Document {
 
     //method checks whether the string passed as an argument is a valid document type.
     //the valid documents accepted are contained within the validDocumentTypes array.
-    private Boolean validateType(String type){
+    private static Boolean validateType(String type){
         for(String validType : Document.validDocumentTypes){
             if (validType.equals(type)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        if (Document.validateType(type)){
+            this.type = type;
+        }
+        return;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        if (number.length() > 20){
+            return;
+        }
+        this.number = number;
+    }
+
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        //max length 30 chars
+        if (authority.length() > 30){
+            return;
+        }
+        this.authority = authority;
+    }
+
+    public LocalDate getIssueDate() {
+        return issueDate;
+    }
+
+    public void setIssueDate(LocalDate issueDate) {
+        //class LocalDate itself ensures the date is valid
+        this.issueDate = issueDate;
+    }
+
+    public static String[] getValidDocumentTypes() {
+        return validDocumentTypes;
     }
 }

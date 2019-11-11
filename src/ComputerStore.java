@@ -10,6 +10,7 @@ public class ComputerStore {
 //        PersonTest3();
 //        BookTest1();
             //
+        PCTest1();
     }
 
     //Tests the constructors and toString of class Document.
@@ -119,6 +120,51 @@ public class ComputerStore {
         System.out.println("---------***************************--------");
 
     }
+
+    //Tests the constructors of class PC (Laptop, Notebook etc..)
+    public static void PCTest1(){
+        Laptop pc1 = new Laptop("HP", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
+        Laptop pc2 = new Laptop("Dell", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
+        Laptop pc3 = new Laptop("Lenovo", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
+        Laptop pc4 = new Laptop();
+        Laptop pc5 = new Laptop(pc1);
+        pc1.setCpu_speed(5.6);
+        System.out.println(pc1);
+        System.out.println(pc5);
+
+        DesktopPC pc6 = new DesktopPC("HP DESKTOP", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
+        DesktopPC pc7 = new DesktopPC(pc6);
+        System.out.println(pc6);
+        System.out.println(pc7);
+
+        Notebook pc8 = new Notebook("HP NOTEBOOK", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
+        Notebook pc81 = new Notebook(pc8);
+        pc81.setColour("YELLOW");
+        System.out.println(pc8);
+        System.out.println(pc81);
+
+        Ultrabook pc9 = new Ultrabook("HP ULTRABOOK", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
+        Ultrabook pc91 = new Ultrabook(pc9);
+        pc91.setAvailable(false);
+        System.out.println(pc9);
+        System.out.println(pc91);
+
+
+        Tablet pc10 = new Tablet("HP TABLET", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
+        Tablet pc101 = new Tablet(pc10);
+        pc101.setDescription("This is a tablet.");
+        System.out.println(pc10);
+        System.out.println(pc101);
+
+
+        Chromebook pc11 = new Chromebook("HP CHROMEBOOK", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
+        Chromebook pc111 = new Chromebook(pc11);
+        pc111.setDescription("This is a chromebook.");
+        System.out.println(pc11);
+        System.out.println(pc111);
+
+    }
+
 
 
 

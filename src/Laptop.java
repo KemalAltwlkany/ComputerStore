@@ -4,12 +4,16 @@ public class Laptop extends PC{
         super();
     }
 
-    public Laptop(String manufacturer, int ram, double storage, double cpu_speed, double gpu_speed,
-                  String cpu_name, String gpu_name, String colour, String type, String name,
-                  double baseRentPrice, double basePurchasePrice){
+    //constructor hardcoded to type Laptop
+    public Laptop(String manufacturer, int ram, double storage, double cpu_speed, double gpu_speed, String cpu_name,
+                  String gpu_name, String colour, double baseRentPrice, double basePurchasePrice){
         super(manufacturer, ram, storage, cpu_speed, gpu_speed, cpu_name, gpu_name, colour,
-                type, name, baseRentPrice, basePurchasePrice);
+                "Laptop", baseRentPrice, basePurchasePrice);
     }
 
+    //copy constructor
+    public Laptop(Laptop other) {
+        super(other);
+    }
 
 }

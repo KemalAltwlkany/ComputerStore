@@ -1,4 +1,15 @@
 public interface IItem {
 
-    public String toString();
+    String toString();
+
+    String getName();
+
+    String getDescription();
+
+    double getBaseRentPrice();
+
+    double getBasePurchasePrice();
+
+    boolean isAvailable();
+
 }
