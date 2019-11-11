@@ -61,7 +61,7 @@ public class Person implements IPerson{
                 '}';
     }
 
-    private static Period subtractTwoDates(LocalDate firstDate, LocalDate secondDate){
+    public static Period subtractTwoDates(LocalDate firstDate, LocalDate secondDate){
         return Period.between(firstDate, secondDate);
     }
 
