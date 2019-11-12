@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -52,5 +53,18 @@ public class Member extends Person {
     @Override
     public String joinedFor() {
         return "MEMBER SINCE: " + super.joinedFor();
+    }
+
+    public String getNamesOfLoanedItems(){
+        String str = "";
+        for(int i=0; i < (loans.size()); i++){
+            if ( i == loans.size() - 1 ){
+                str = str + loans.get(i).getLoanedItem().getName() ;
+            }
+            else{
+                str = str + loans.get(i).getLoanedItem().getName() + ", ";
+            }
+        }
+        return str;
     }
 }

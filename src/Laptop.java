@@ -2,6 +2,7 @@ public class Laptop extends PC{
 
     public Laptop(){
         super();
+        setName("Laptop");
     }
 
     //constructor hardcoded to type Laptop
@@ -16,4 +17,12 @@ public class Laptop extends PC{
         super(other);
     }
 
+    @Override
+    public void setName(String name){
+        //Class should not be able to change its name attribute.
+        this.name = "Laptop";
+    }
+
 }
+
+//CHANGE ALL FIELDS "NAME" INTO CONSTANT

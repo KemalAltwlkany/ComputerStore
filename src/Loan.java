@@ -15,6 +15,7 @@ public class Loan {
         this.loanedTo = loanedTo;
         this.loanedItem = loanedItem;
         this.loanedDate = loanedDate;
+        this.loanedTo.addLoan(this);
     }
 
     public Member getLoanedTo() {
@@ -75,4 +76,14 @@ public class Loan {
         this.setLoanedDate(LocalDate.now());
     }
 
+    @Override
+    public String toString() {
+        return "Loan{" +
+                "loanedTo=" + loanedTo.getName() +
+                " " + loanedTo.getSurname() +
+                ", loaned=" + loanedTo.getNamesOfLoanedItems() +
+                ", loanedItem=" + loanedItem.getName() +
+                ", loanedDate=" + loanedDate +
+                '}';
+    }
 }

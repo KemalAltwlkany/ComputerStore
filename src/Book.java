@@ -59,6 +59,13 @@ public class Book extends Item {
         this.publishDate = publishDate;
     }
 
+    //Should be overriden?
+    @Override
+    public void setName(String name){
+        //Item name cannot be changed for child classes.
+        this.name = "Book";
+    }
+
     @Override
     public String toString() {
         return "Book{" +

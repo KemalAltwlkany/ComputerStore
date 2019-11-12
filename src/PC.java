@@ -11,6 +11,9 @@ public abstract class PC extends  Item{
     //Can be extended into separated classes in order to demonstrate polymorphism and inheritance better
     protected static String[] types = {"DesktopPC", "Laptop", "Chromebook", "Notebook", "Ultrabook", "Tablet"};
 
+    //FIELD TYPE WILL PROBABLY BE REMOVED AND ITS FUNCTIONALITY REPLACED BY FIELD NAME FROM DERIVED CLASSES
+    //SINCE THIS IS ABSTRACT
+
     public PC(){
         super("PC");
         manufacturer = "Acer";
@@ -193,4 +196,8 @@ public abstract class PC extends  Item{
                 ", available=" + available +
                 '}';
     }
+
+    @Override
+    public abstract void setName(String name);
+    //We require the method to be overriden by every of its child classes.
 }
