@@ -1,35 +1,32 @@
 public abstract class PC extends  Item{
-    private String manufacturer; //max 30 characters
-    private int ram; //in GB
-    private double storage; //in TB
-    private double cpu_speed; //clock speed, in GHz
-    private double gpu_speed; //in GB
-    private String cpu_name; //max 30 characters
-    private String gpu_name; //max 30 characters
-    private String colour;  //max 30 characters
-    private String type;    //restricted to predefined types
-    //Can be extended into separated classes in order to demonstrate polymorphism and inheritance better
-    protected static String[] types = {"DesktopPC", "Laptop", "Chromebook", "Notebook", "Ultrabook", "Tablet"};
-
-    //FIELD TYPE WILL PROBABLY BE REMOVED AND ITS FUNCTIONALITY REPLACED BY FIELD NAME FROM DERIVED CLASSES
-    //SINCE THIS IS ABSTRACT
+    protected String model; //max 15 characters
+    protected String manufacturer; //max 30 characters
+    protected int ram; //in GB
+    protected double storage; //in TB
+    protected double cpu_speed; //clock speed, in GHz
+    protected double gpu_speed; //in GB
+    protected String cpu_name; //max 30 characters
+    protected String gpu_name; //max 30 characters
+    protected String colour;  //max 30 characters
 
     public PC(){
-        super("PC");
+        super();
+        model = "Aspire E-15";
         manufacturer = "Acer";
         ram = 8;
-        storage = 1024;
+        storage = 1.128;
         cpu_speed = 2.5;
+        gpu_speed = 1.1;
         cpu_name = "Intel Core i5-7200U";
+        gpu_name = "NVIDIA GeForce 940MX";
         colour = "Aluminum black";
-        type = "Laptop";
     }
 
-    //hardcoded Item.name to "PC"
-    public PC(String manufacturer, int ram, double storage, double cpu_speed, double gpu_speed,
-              String cpu_name, String gpu_name, String colour, String type,
+    public PC(String model, String manufacturer, int ram, double storage, double cpu_speed, double gpu_speed,
+              String cpu_name, String gpu_name, String colour,
               double baseRentPrice, double basePurchasePrice){
-        super("PC", baseRentPrice, basePurchasePrice);
+        super(baseRentPrice, basePurchasePrice);
+        this.setModel(model);
         this.setManufacturer(manufacturer);
         this.setRam(ram);
         this.setStorage(storage);
@@ -38,12 +35,12 @@ public abstract class PC extends  Item{
         this.setCpu_name(cpu_name);
         this.setGpu_name(gpu_name);
         this.setColour(colour);
-        this.setType(type);
     }
 
     //copy constructor
     public PC(PC other) {
         super(other);
+        this.model = other.model;
         this.manufacturer = other.manufacturer;
         this.ram = other.ram;
         this.storage = other.storage;
@@ -52,17 +49,17 @@ public abstract class PC extends  Item{
         this.cpu_name = other.cpu_name;
         this.gpu_name = other.gpu_name;
         this.colour = other.colour;
-        this.type = other.type;
     }
 
-    //Checks whether String passed as argument is a valid PC type. Returns true if it is.
-    protected static boolean validateType(String type){
-        for(String x : PC.types){
-            if (x.equals(type)){
-                return true;
-            }
+    public String getModel(){
+        return this.model;
+    }
+
+    public void setModel(String model){
+        if (model.length() > 15){
+            return;
         }
-        return false;
+        this.model = model;
     }
 
     public String getManufacturer() {
@@ -161,43 +158,23 @@ public abstract class PC extends  Item{
         this.colour = colour;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        //PC type restricted to predefined values contain in class array
-        if ( PC.validateType(type)){
-            this.type = type;
-        }
-        return;
-    }
-
-    public static String[] getTypes() {
-        return types;
-    }
-
     @Override
-    public String toString() {
-        return "PC{" +
-                "manufacturer='" + manufacturer + '\'' +
-                ", ram=" + ram +
-                ", storage=" + storage +
-                ", cpu_speed=" + cpu_speed +
-                ", gpu_speed=" + gpu_speed +
-                ", cpu_name='" + cpu_name + '\'' +
-                ", gpu_name='" + gpu_name + '\'' +
-                ", colour='" + colour + '\'' +
-                ", type='" + type + '\'' +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", baseRentPrice=" + baseRentPrice +
-                ", basePurchasePrice=" + basePurchasePrice +
-                ", available=" + available +
-                '}';
-    }
+    public abstract String toString();
 
-    @Override
-    public abstract void setName(String name);
-    //We require the method to be overriden by every of its child classes.
+    public  String verboseToString(){
+            return  "model='" + model + '\'' +
+                    ", manufacturer='" + manufacturer + '\'' +
+                    ", ram=" + ram +
+                    ", storage=" + storage +
+                    ", cpu_speed=" + cpu_speed +
+                    ", gpu_speed=" + gpu_speed +
+                    ", cpu_name='" + cpu_name + '\'' +
+                    ", gpu_name='" + gpu_name + '\'' +
+                    ", colour='" + colour + '\'' +
+                    ", description='" + description + '\'' +
+                    ", baseRentPrice=" + baseRentPrice +
+                    ", basePurchasePrice=" + basePurchasePrice +
+                    ", available=" + available +
+                    '}';
+    }
 }

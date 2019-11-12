@@ -1,39 +1,27 @@
 public abstract class Item implements  IItem{
-    protected String name;
     protected String description;
     protected double baseRentPrice; //per day by definition
     protected double basePurchasePrice;
-    protected boolean available;
+    protected boolean available; //by default always initialized to true
 
-    //Maximum item allowed item name is 25 characters. Maximum description is 200 characters.
-    //purchase and rent price are only lower bound limited, i.e. cannot be a negative value
+//    Maximum allowed item name is 25 characters. Maximum description is 200 characters.
+//    purchase and rent price are only lower bound limited, i.e. cannot be a negative value
 
     public Item(){
-        name = "Fake_item";
         description = null;
         baseRentPrice = 0;
         basePurchasePrice = 0;
         available = true;
     }
 
-    public Item(String name){
-        this.setName(name);
-        description = null;
-        baseRentPrice = 0;
-        basePurchasePrice = 0;
-        available = true;
-    }
-
-    public Item(String name, double baseRentPrice, double basePurchasePrice){
-        this.setName(name);
+    public Item(double baseRentPrice, double basePurchasePrice){
         this.setBaseRentPrice(baseRentPrice);
         this.setBasePurchasePrice(basePurchasePrice);
         this.description = null;
         available = true;
     }
 
-    public Item(String name, String description, double baseRentPrice, double basePurchasePrice){
-        this.setName(name);
+    public Item(String description, double baseRentPrice, double basePurchasePrice){
         this.setDescription(description);
         this.setBaseRentPrice(baseRentPrice);
         this.setBasePurchasePrice(basePurchasePrice);
@@ -42,23 +30,10 @@ public abstract class Item implements  IItem{
 
     //copy constructor
     public Item(Item other) {
-        this.name = other.name;
         this.description = other.description;
         this.baseRentPrice = other.baseRentPrice;
         this.basePurchasePrice = other.basePurchasePrice;
         this.available = other.available;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        //name field up to maximum of 25 characters
-        if (name.length() > 25){
-            return;
-        }
-        this.name = name;
     }
 
     public String getDescription() {
@@ -106,14 +81,6 @@ public abstract class Item implements  IItem{
     }
 
     @Override
-    public String toString() {
-        return "Item{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", baseRentPrice=" + baseRentPrice +
-                ", basePurchasePrice=" + basePurchasePrice +
-                ", available=" + available +
-                '}';
-    }
+    public abstract String toString();
 
 }

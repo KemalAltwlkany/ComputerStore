@@ -6,13 +6,14 @@ public class Book extends Item {
     private LocalDate publishDate;
 
     public Book(){
-        super("Book");
+        super();
         author = null;
+        title = null;
         publishDate = LocalDate.now();
     }
 
     public Book(String title, String author, LocalDate publishDate, double baseRentPrice, double basePurchasePrice){
-        super("Book", baseRentPrice, basePurchasePrice);
+        super(baseRentPrice, basePurchasePrice);
         this.title = title;
         this.author = author;
         this.publishDate = publishDate;
@@ -59,20 +60,12 @@ public class Book extends Item {
         this.publishDate = publishDate;
     }
 
-    //Should be overriden?
-    @Override
-    public void setName(String name){
-        //Item name cannot be changed for child classes.
-        this.name = "Book";
-    }
-
     @Override
     public String toString() {
         return "Book{" +
                 "title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", publishDate=" + publishDate +
-                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", baseRentPrice=" + baseRentPrice +
                 ", basePurchasePrice=" + basePurchasePrice +

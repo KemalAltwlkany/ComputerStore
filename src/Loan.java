@@ -6,6 +6,8 @@ public class Loan {
     private Member loanedTo;
     private Item loanedItem;
     private LocalDate loanedDate;
+    //private double cost;
+    //private boolean overdue;
     //Attributes overdue and cost aren't kept as variables as they constantly change.
     //Therefore they are computed every time their "get" is called.
 
@@ -82,7 +84,7 @@ public class Loan {
                 "loanedTo=" + loanedTo.getName() +
                 " " + loanedTo.getSurname() +
                 ", loaned=" + loanedTo.getNamesOfLoanedItems() +
-                ", loanedItem=" + loanedItem.getName() +
+                ", loanedItem=" + this.getClass().getSimpleName() +
                 ", loanedDate=" + loanedDate +
                 '}';
     }
