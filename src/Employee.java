@@ -1,41 +1,32 @@
 import java.time.LocalDate;
 
 public abstract class Employee extends Person{
-    private double salary;
-    private String position;
-    private String healthCareNumber; //country specific format, lets say exactly 14 characters
-    private static String[] positions = {"Manager", "Computer Specialist", "Salesman"};
+    protected double salary;
+    protected String healthCareNumber; //country specific format, lets say exactly 14 characters
 
     public Employee(){
         super();
         salary = 50;
-        position = null;
         healthCareNumber = null;
     }
 
-    public Employee(Employee emp){
-        super(emp.getName(), emp.getSurname(),  emp.getDocument(), emp.getBirthDate(), emp.getJoiningDate());
+    public Employee(Employee emp) {
+        super(emp); //super(emp.name, emp.surname, emp.document, emp.birthDate, emp.joiningDate);
         this.salary = emp.salary;
-        this.position = emp.position;
         this.healthCareNumber = emp.healthCareNumber;
     }
 
-    public Employee(String name, String surname,  Document doc, LocalDate birthDate, LocalDate joiningDate,
-                    double salary, String position, String healthCareNumber){
-        super(name, surname, doc, birthDate, joiningDate);
-        this.salary = salary;
-        this.position = position;
-        this.healthCareNumber = healthCareNumber;
+    public Employee(String name, String surname){
+        super(name, surname);
+        salary = 50;
+        healthCareNumber = null;
     }
 
-    //Position can only be one of the predefined values.
-    private static boolean validatePosition(String position){
-        for(String x : Employee.positions){
-            if (x.equals(position)){
-                return true;
-            }
-        }
-        return false;
+    public Employee(String name, String surname,  Document doc, LocalDate birthDate, LocalDate joiningDate,
+                    double salary, String healthCareNumber){
+        super(name, surname, doc, birthDate, joiningDate);
+        this.salary = salary;
+        this.healthCareNumber = healthCareNumber;
     }
 
     public double getSalary() {
@@ -48,17 +39,6 @@ public abstract class Employee extends Person{
             return;
         }
         this.salary = salary;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        //only a valid position can be set
-        if (Employee.validatePosition(position)){
-            this.position = position;
-        }
     }
 
     public String getHealthCareNumber() {
@@ -76,11 +56,24 @@ public abstract class Employee extends Person{
     @Override
     public String toString() {
         return "Employee{" +
-                "name= " + this.getName() +
-                "surname= " + this.getSurname() +
-                "salary=" + salary +
-                ", position='" + position + '\'' +
+                ", name= " + name +
+                ", surname= " + surname +
+                ", salary=" + salary +
+                ", position='" + this.getClass().getSimpleName() + '\'' +
                 ", healthCareNumber='" + healthCareNumber + '\'' +
+                '}';
+    }
+
+    @Override
+    public String verboseToString() {
+        return "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", document=" + document +
+                ", birthDate=" + birthDate +
+                ", joiningDate=" + joiningDate +
+                ", salary=" + salary +
+                ", healthCareNumber='" + healthCareNumber + '\'' +
+                ", position= " + this.getClass().getSimpleName() + '\'' +
                 '}';
     }
 
@@ -88,6 +81,9 @@ public abstract class Employee extends Person{
     public String joinedFor() {
         return "EMPLOYED SINCE: " +  super.joinedFor();
     }
+
+    public abstract void setSupervisor(Manager supervisor);
+
 }
 
 

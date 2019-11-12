@@ -2,11 +2,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Manager extends Employee {
-    ArrayList<Employee> subordinates = new ArrayList<>();
+    private ArrayList<Employee> subordinates = new ArrayList<>();
 
     public Manager() {
         super();
-        this.setPosition("Manager");
     }
 
     public Manager(Manager other) {
@@ -14,9 +13,13 @@ public class Manager extends Employee {
         this.subordinates = other.subordinates;
     }
 
+    public Manager(String name, String surname){
+        super(name, surname);
+    }
+
     public Manager(String name, String surname, Document doc, LocalDate birthDate, LocalDate joiningDate, double salary,
                    String healthCareNumber) {
-        super(name, surname, doc, birthDate, joiningDate, salary, "Manager", healthCareNumber);
+        super(name, surname, doc, birthDate, joiningDate, salary, healthCareNumber);
     }
 
     public void addSubordinate(Employee emp){
@@ -27,4 +30,25 @@ public class Manager extends Employee {
         this.subordinates.remove(emp);
     }
 
+    @Override
+    public String toString() {
+        return "Manager{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", salary=" + salary +
+                ", subordinates=" + subordinates +
+                "} ";
+    }
+
+    @Override
+    public String verboseToString() {
+        return "Manager{" +
+                "subordinates=" + subordinates + ", " +
+                super.verboseToString();
+    }
+
+    //Method isn't supposed to do anything.
+    @Override
+    public void setSupervisor(Manager manager) {
+    }
 }

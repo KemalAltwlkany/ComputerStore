@@ -53,31 +53,57 @@ public class Store {
     }
 
     //Returns true/false depending whether the loan was successful or not.
-    public boolean createLoan(Member memb, Item it){
+    public boolean createLoan(Member m, Item it){
         //CHECK IF ITEM IS LOANED ALREADY
         //ADD FEATURE LATER TO CREATE MAX NUMBER OF LOANS PER MEMBER
         if (it.isAvailable()){
-            Loan new_loan = new Loan(memb, it, LocalDate.now());
+            Loan new_loan = new Loan(m, it, LocalDate.now());
             loans.add(new_loan);
+
+            //Very important, the member and item class need to be updated as well!
+            m.addLoan(new_loan);
+            it.setAvailable(false);
             return true;
         }
         else return false;
     }
 
-    public void removeLoan(Loan x){
-        loans.remove(x);
+    public void returnItem(Item x){
+        if ( x.isAvailable() ){
+            return;
+        }
+        for(Loan loaned_item : loans){
+            if (loaned_item.getLoanedItem() == x){
+                removeLoan(loaned_item);
+                return;
+            }
+        }
     }
 
-    public void returnLoan(Loan x){
+    public void removeLoan(Loan x){
+        //First we remove the loan from the person's item list as well as change the state of the item to available
+        x.getLoanedTo().removeLoan(x);
         x.getLoanedItem().setAvailable(true);
+
+        //Ensure the loan has no data in itself
+        x.setLoanedTo(null);
+        x.setLoanedItem(null);
+
+        //Finally, remove the loan from the list of loans
+        loans.remove(x);
     }
 
     public double getEmployeeSalary(Employee x){
         return x.getSalary();
     }
 
-    public ArrayList<Loan> getLoanedItems(Member x){
-        return x.getLoans();
+    //Returns list of currently loaned items
+    public ArrayList<Item> getLoanedItems(Member x){
+        ArrayList<Item> items = new ArrayList<>();
+        for(Loan i : loans){
+            items.add(i.getLoanedItem());
+        }
+        return items;
     }
 
     public String getName() {
@@ -87,6 +113,11 @@ public class Store {
     public void setName(String name) {
         this.name = name;
     }
+
+    /* It doesn't make much sense to have sets and gets for the Store arrays. They are supposed to be operated
+    element-wise. I have implemented them and commented, in case they are required. */
+
+    /*
 
     public ArrayList<Item> getItems() {
         return items;
@@ -120,6 +151,7 @@ public class Store {
         this.loans = loans;
     }
 
+     */
     @Override
     public String toString() {
         return "Store{" +

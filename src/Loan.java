@@ -20,7 +20,6 @@ public class Loan {
         this.loanedTo = loanedTo;
         this.loanedItem = loanedItem;
         this.loanedDate = loanedDate;
-        this.loanedTo.addLoan(this);
     }
 
     public Member getLoanedTo() {
@@ -56,9 +55,15 @@ public class Loan {
         return false;
     }
 
+    //returns total number of days the item has been loaned
     public long loanDays(){
+        return ChronoUnit.DAYS.between(loanedDate, LocalDate.now());
+    }
+
+    //returns total number of days the item has been overdue
+    public long overDueDays(){
         if (this.isOverDue()){
-            return ChronoUnit.DAYS.between(loanedDate, LocalDate.now());
+            return ChronoUnit.DAYS.between(loanedDate, LocalDate.now())-15;
         }
         else return 0;
     }
@@ -67,13 +72,11 @@ public class Loan {
     public double getCost(){
         if (this.isOverDue()){
             //15 days for regular price + 0.3 euros EXTRA per due day.
-            long days_loaned = this.loanDays();
-            double cost = 15*loanedItem.getBaseRentPrice() + (days_loaned - 15 ) * (loanedItem.getBaseRentPrice() + 0.3);
+            double cost = 15*loanedItem.getBaseRentPrice() + overDueDays()*(loanedItem.getBaseRentPrice() + 0.3);
             return cost;
         }
         else{
-            long days_loaned = this.loanDays();
-            return loanedItem.getBaseRentPrice() * days_loaned;
+            return loanedItem.getBaseRentPrice()*loanDays();
         }
     }
 
@@ -86,14 +89,15 @@ public class Loan {
         return "Loan{" +
                 "loanedTo=" + loanedTo.getName() +
                 ", " + loanedTo.getSurname() +
-                ", loanedItem=" + this.getClass().getSimpleName() +
+                ", loanedItem=" + loanedItem.getClass().getSimpleName() +
                 ", loanedDate=" + loanedDate +
                 '}';
     }
 
     public String verboseToString(){
         return "Loan{" +
-                "loanedTo=" + loanedTo +
+                "loanedTo=" + loanedTo.getName() +
+                ", " + loanedTo.getSurname() +
                 ", loanedItem=" + loanedItem +
                 ", loanedDate=" + loanedDate +
                 '}';

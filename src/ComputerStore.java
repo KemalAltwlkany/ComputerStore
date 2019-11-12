@@ -1,8 +1,10 @@
 import javax.print.Doc;
+import javax.swing.plaf.metal.MetalMenuBarUI;
 import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+//Main method located here. This class has no code or implementation. Used for testing only.
 public class ComputerStore {
 
     public static void main(String[] args) {
@@ -21,11 +23,23 @@ public class ComputerStore {
 //        BookTest2();
 //        Book tests are satisfactory and work as expected. Class Book is completed
 
+//        PCTest1();
+//        All PC inherited classes work as expected. Class PC and its inherited classes are completed.
 
-        PCTest1();
-//            StoreTest1();
-//            MemberTest1();
-//            LoanTest1();
+//        EmployeeTest1();
+//        Employee and inherited classes work as expected.
+
+//        MemberTest1();
+//        Member class works as expected
+
+//        LoanTest1();
+//        Loan class works as expected
+
+//        StoreTest1();
+//        StoreTest2();
+//        StoreTest3();
+            StoreTest4();
+//        Store class works as expected
     }
 
     //Tests the constructors and method toString of class Document.
@@ -280,7 +294,6 @@ public class ComputerStore {
 
         System.out.println("---------FINISHED PCTest 1--------");
         System.out.println("---------***************************--------");
-
     }
 
     //Test the constructors of class Store
@@ -312,7 +325,7 @@ public class ComputerStore {
         m1.setSurname("Altwlkany");
         m1.setBirthDate(LocalDate.of(1996, 11, 11));
         m1.setJoiningDate(LocalDate.of(2015, 11, 12));
-        System.out.println("Expected output: Kemal Altwlkany, born 11.11.1996, member since 12.11.2015.");
+        System.out.println("Expected output: Kemal Altwlkany, member since 12.11.2015.");
         System.out.println(m1);
 
         System.out.println();
@@ -321,8 +334,8 @@ public class ComputerStore {
         Member m2 = new Member(m1);
         m2.setName("Doctor");
         m2.setSurname("Strange");
-        System.out.println("Expected output: Doctor Strange, born 11.11.1996, member since 12.11.2015.");
-        System.out.println("Expected output: Kemal Altwlkany, born 11.11.1996, member since 12.11.2015.");
+        System.out.println("Expected output: Doctor Strange, member since 12.11.2015.");
+        System.out.println("Expected output: Kemal Altwlkany, member since 12.11.2015.");
         System.out.println(m2);
         System.out.println(m1);
 
@@ -331,7 +344,7 @@ public class ComputerStore {
 
         Member m3 = new Member("Bernard", "Shaw");
         m3.setBirthDate(LocalDate.of(1999, 1, 1));
-        System.out.println("Expected output: Bernard Shaw, born 01.01.1999, member since TODAY.");
+        System.out.println("Expected output: Bernard Shaw, member since TODAY.");
         System.out.println(m3);
 
         System.out.println();
@@ -342,6 +355,52 @@ public class ComputerStore {
         System.out.println(m3.getName() + " " +  m3.joinedFor());
 
         System.out.println("---------FINISHED MemberTest 1--------");
+        System.out.println("---------***************************--------");
+    }
+
+    //Tests the constructors and basic methods of class Employee(Manager, ComputerSpecialist, Salesman)
+    public static void EmployeeTest1(){
+        System.out.println("---------RUNNING  EmployeeTest 1--------");
+        System.out.println("---------***************************--------");
+
+        Manager m1 = new Manager("Bill", "Gates");
+        Manager m2 = new Manager("Elon", "Musk");
+        System.out.println(m1);
+        System.out.println(m2.verboseToString());
+        System.out.println();
+        System.out.println();
+
+        m1.setSalary(1780.17);
+        m2.setSalary(2800.28);
+        ComputerSpecialist cs1 = new ComputerSpecialist();
+        ComputerSpecialist cs2 = new ComputerSpecialist("Kemal", "Altwlkany");
+        Salesman sm1 = new Salesman();
+        Salesman sm2 = new Salesman("Mansa", "Musa");
+        cs2.setSalary(1000);
+        m1.addSubordinate(cs1);
+        m1.addSubordinate(cs2);
+        m1.addSubordinate(sm1);
+        m2.addSubordinate(sm2);
+        System.out.println(m1);
+        System.out.println(m2);
+        System.out.println(cs1);
+        System.out.println(cs2);
+        System.out.println(sm1);
+        System.out.println(sm2);
+        System.out.println();
+        System.out.println();
+
+        System.out.println(sm2.verboseToString());
+        System.out.println(cs1.verboseToString());
+
+        System.out.println();
+        System.out.println();
+        m1.removeSubordinate(cs1);
+        cs1.setSalary(3999);
+        System.out.println(cs1);
+        System.out.println(m1);
+
+        System.out.println("---------FINISHED EmployeeTest 1--------");
         System.out.println("---------***************************--------");
     }
 
@@ -364,17 +423,10 @@ public class ComputerStore {
         b2.setTitle("Book TWO");
 
         Laptop pclap1 = new Laptop();
-        //pclap1.setName("Acer Aspire E5");
-
         Tablet pctab1 = new Tablet();
-        //pctab1.setName("iPad 4");
-
         DesktopPC pcdesk1 = new DesktopPC();
-
         Notebook pcnote1 = new Notebook();
-
         Ultrabook pcultra1 = new Ultrabook();
-
         Chromebook pcchrome1 = new Chromebook();
 
         Loan l1 = new Loan(m1, b1, LocalDate.of(2011, 1, 10));
@@ -404,22 +456,138 @@ public class ComputerStore {
         System.out.println(l7);
         System.out.println(l8);
 
-        System.out.println("Now modifying in order parameters to be the same");
+        System.out.println("Now modifying names of members loanedTo to be the same");
         l1.getLoanedTo().setName("PERSON 1");
         m2.setName("PERSON 2");
+        System.out.println(b1);
+        System.out.println(b2);
 
         System.out.println(l1);
         System.out.println(l2);
+        System.out.println(m1);
+        System.out.println(m2);
         System.out.println();
         System.out.println();
+        System.out.println();
+
 
 
         System.out.println("---------FINISHED LoanTest 1--------");
         System.out.println("---------***************************--------");
     }
 
+    //Tests the members, loans and items part of the class
+    public static void StoreTest2(){
+        System.out.println("---------RUNNING  StoreTest 2--------");
+        System.out.println("---------***************************--------");
 
+        Store st1 = new Store();
+        st1.setName("Bosnian-Irish Company");
+        System.out.println(st1);
 
+        //Create 3 members and 6 items to enable testing.
+        Book b1 = new Book();
+        b1.setTitle("Unix in a Nutshell");
+        b1.setDescription("A book describing the basics of Unix based systems");
+        b1.setAuthor("Steven R");
+        Book b2 = new Book();
+        b2.setTitle("Intro to ML");
+        b2.setAuthor("David D.");
+        b2.setDescription("A book containing the basics to Machine Learning algorithms");
+        Notebook nb1 = new Notebook("Yoga", "Lenovo", 8, 1.5, 1.2, 0.8, "Intel Core i7", "AMD Radeon", "Yellow", 6.3, 1200);
+        DesktopPC pc1 = new DesktopPC("IMTEC", "Asus", 16, 2.7, 3.5, 1.9, "Intel Core i9-9900K", "NVIDIA GeForce 1200RX", "Black", 27, 5333.99);
+        Laptop lap1 = new Laptop("Aspire E-15", "Acer", 16, 1.128, 2.5, 3.7, "Intel Core i5-7200U", "NVIDIA GeForce 940MX", "Black", 17.4, 667);
+        Laptop lap2 = new Laptop("HP Probook 470G", "Hewlett Packard", 32, 0.256, 1.8, 1.0,"Intel Core i5-6200U", "NVIDIA K12", "Black-gray", 13.99, 700);
+
+        Member m1 = new Member("Kemal", "Altwlkany");
+        Member m2 = new Member("Edina", "Razanica");
+        Member m3 = new Member("Emina", "Okanovic");
+        Member m4 = new Member("Dinno", "Koluh");
+
+        st1.addMember(m1); st1.addMember(m2); st1.addMember(m3); st1.addMember(m4);
+        st1.addItem(b1); st1.addItem(b2); st1.addItem(nb1); st1.addItem(pc1); st1.addItem(lap1); st1.addItem(lap2);
+
+        System.out.println("Printing information about Store, Members and Items so far:");
+        System.out.println(st1);
+        System.out.println();
+        System.out.println();
+        System.out.println("1st member rents 1 item, 2nd member 2 items, and 3rd member 3 items, 4th member 0 items");
+        st1.createLoan(m1, b1);
+        st1.createLoan(m2, b2);
+        st1.createLoan(m2, nb1);
+        st1.createLoan(m3, pc1);
+        st1.createLoan(m3, lap1);
+        st1.createLoan(m3, lap2);
+        System.out.println(st1);
+
+        System.out.println("---------FINISHED StoreTest 2--------");
+        System.out.println("---------***************************--------");
+    }
+
+    //Tests reference prone mistakes, such as loaning already loaned items
+    public static void StoreTest3(){
+        System.out.println("---------RUNNING  StoreTest 3--------");
+        System.out.println("---------***************************--------");
+        Store st = new Store();
+        Member m1 = new Member("James", "Bond");
+        Member m2 = new Member("Johnnie", "English");
+        Tablet tab1 = new Tablet();
+        st.createLoan(m1, tab1);
+        st.addMember(m1); st.addMember(m2); st.addItem(tab1);
+        System.out.println(st);
+        System.out.println("Store will now try to loan item which is already loaned.");
+        st.createLoan(m2, tab1);
+        System.out.println(st);
+
+        System.out.println("---------FINISHED StoreTest 3--------");
+        System.out.println("---------***************************--------");
+    }
+
+    public static void StoreTest4(){
+        System.out.println("---------RUNNING  StoreTest 3--------");
+        System.out.println("---------***************************--------");
+        Store st1 = new Store();
+        Member m1 = new Member("Peter", "Parker");
+        Member m2 = new Member("Clark", "Kent");
+        Member m3 = new Member("Tony", "Stark");
+        Member m4 = new Member("Bruce", "Wayne");
+
+        Book b1 = new Book();
+        b1.setTitle("Java");
+        Book b2 = new Book();
+        b2.setTitle("C++");
+        Book b3 = new Book();
+        b3.setTitle("Python");
+        Book b4 = new Book();
+        b4.setTitle("JavaScript");
+
+        st1.addMember(m1);
+        st1.addMember(m2);
+        st1.addMember(m3);
+        st1.addMember(m4);
+        st1.addItem(b1);
+        st1.addItem(b2);
+        st1.addItem(b3);
+        st1.addItem(b4);
+
+        System.out.println(st1);
+        System.out.println("Creating loans 1-1, 2-2, 3-3, 4-4");
+        st1.createLoan(m1, b1);
+        st1.createLoan(m2, b2);
+        st1.createLoan(m3, b3);
+        st1.createLoan(m4, b4);
+        System.out.println();
+        System.out.println(st1);
+        System.out.println("Deleting loans 1,2,3");
+        st1.returnItem(b1);
+        st1.returnItem(b2);
+        st1.returnItem(b3);
+        System.out.println(st1);
+
+        System.out.println();
+        System.out.println("---------FINISHED StoreTest 3--------");
+        System.out.println("---------***************************--------");
+    }
 
 }
 

@@ -35,23 +35,25 @@ public class Member extends Person {
     }
 
     public void removeLoan(Loan rm_loan){
+
         this.loans.remove(rm_loan);
     }
 
     @Override
     public String toString() {
         return "Member{" +
-                "name='" + super.getName() + '\'' +
-                ", surname='" + super.getSurname() + '\'' +
-                ", document=" + super.getDocument() +
-                ", birthDate=" + super.getBirthDate() +
-                ", joiningDate=" + super.getJoiningDate() +
-                "loans=" + loans +
+                "name='" + getName() + '\'' +
+                ", surname='" + getSurname() + '\'' +
+                ", document={" + getDocument().getType() + ", " + getDocument().getNumber() + '}' +
+                ", joiningDate=" + getJoiningDate().format(formatter) +
+                ", loans=" + loans +
                 '}';
     }
 
+
+
     @Override
     public String joinedFor() {
-        return "MEMBER SINCE: " + super.joinedFor();
+        return "MEMBER FOR: " + super.joinedFor();
     }
 }

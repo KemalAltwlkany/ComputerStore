@@ -8,14 +8,15 @@ import java.time.format.DateTimeFormatter;
 
 //Class could be but doesn't necessarily have to be abstract.
 public class Person implements IPerson{
-    private String name; //max 15 characters
-    private String surname; //max 25 characters
-    private Document document;
+    protected String name; //max 15 characters
+    protected String surname; //max 25 characters
+    protected Document document;
+    protected LocalDate birthDate;
+    protected LocalDate joiningDate; //Interpreted as joining the staff or club, dependent on the child class.
     //Due to possible change, age should not be store as a variable, but always computed upon requests.
-    //The class acts as if the age field exists.
-    private LocalDate birthDate;
-    private LocalDate joiningDate; //Interpreted as joining the staff or club, dependent on the child class.
+    //The class acts as if the age field exists: private int age;
     protected static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
 
     public Person(){
         name = "Fake_person";
@@ -61,6 +62,16 @@ public class Person implements IPerson{
                 '}';
     }
 
+    public String verboseToString(){
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", document=" + document +
+                ", birthDate=" + birthDate +
+                ", joiningDate=" + joiningDate +
+                '}';
+    }
+
     public static Period subtractTwoDates(LocalDate firstDate, LocalDate secondDate){
         return Period.between(firstDate, secondDate);
     }
@@ -71,6 +82,7 @@ public class Person implements IPerson{
         //String str = String.valueOf(per.getYears()) + String.valueOf(per.getMonths()) +  String.valueOf(per.getDays());
     }
 
+    //No set for the age attribute. Age can only be modified via the BirthDate attribute.
     public int getAge(){
         Period p = Person.subtractTwoDates(birthDate, LocalDate.now());
         return p.getYears();
@@ -99,8 +111,6 @@ public class Person implements IPerson{
         }
         this.surname = surname;
     }
-
-    //No set for the age attribute. Age can only be modified via the BirthDate attribute.
 
     public Document getDocument() {
         return document;

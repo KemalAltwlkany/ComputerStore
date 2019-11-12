@@ -3,94 +3,88 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="2323.0" y="1187.0">Laptop</node>
-    <node x="1741.0" y="1187.0">Notebook</node>
-    <node x="933.0" y="1304.0">Store</node>
-    <node x="609.0" y="1304.0">Document</node>
-    <node x="599.0" y="1187.0">Ultrabook</node>
-    <node x="1547.75" y="211.0">Item</node>
-    <node x="72.0" y="1304.0">IPerson</node>
-    <node x="108.0" y="1903.0">Employee</node>
-    <node x="1188.5" y="600.0">PC</node>
-    <node x="1732.5" y="787.5">Book</node>
-    <node x="1180.0" y="1187.0">Tablet</node>
-    <node x="1581.25" y="0.0">IItem</node>
-    <node x="10.0" y="1470.0">Person</node>
-    <node x="0.0" y="1971.0">Member</node>
-    <node x="0.0" y="1187.0">Chromebook</node>
+    <node x="373.0" y="228.0">Laptop</node>
+    <node x="481.0" y="228.0">Notebook</node>
+    <node x="402.0" y="299.0">Store</node>
+    <node x="255.0" y="299.0">Document</node>
+    <node x="136.0" y="228.0">Ultrabook</node>
+    <node x="315.5" y="76.0">Item</node>
+    <node x="54.0" y="299.0">IPerson</node>
+    <node x="108.0" y="451.0">Employee</node>
+    <node x="279.0" y="152.0">PC</node>
+    <node x="359.0" y="152.0">Book</node>
+    <node x="265.0" y="228.0">Tablet</node>
+    <node x="312.0" y="0.0">IItem</node>
+    <node x="0.0" y="451.0">Member</node>
+    <node x="57.5" y="375.0">Person</node>
+    <node x="0.0" y="228.0">Chromebook</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="Tablet" target="PC">
-      <point x="0.0" y="-36.0" />
-      <point x="0.0" y="268.5" />
-    </edge>
-    <edge source="PC" target="Item">
-      <point x="0.0" y="-268.5" />
-      <point x="1450.5" y="575.0" />
-      <point x="1606.75" y="575.0" />
-      <point x="-59.0" y="169.5" />
-    </edge>
-    <edge source="Item" target="IItem">
-      <point x="0.0" y="-169.5" />
-      <point x="0.0" y="80.5" />
-    </edge>
     <edge source="Ultrabook" target="PC">
-      <point x="0.0" y="-36.0" />
-      <point x="879.5" y="1167.0" />
-      <point x="1345.7" y="1167.0" />
-      <point x="-104.79999999999995" y="268.5" />
-    </edge>
-    <edge source="Employee" target="Person">
-      <point x="0.0" y="-81.0" />
-      <point x="336.0" y="1878.0" />
-      <point x="280.0" y="1878.0" />
-      <point x="90.0" y="191.5" />
+      <point x="0.0" y="-13.0" />
+      <point x="190.5" y="208.0" />
+      <point x="297.0" y="208.0" />
+      <point x="-12.0" y="13.0" />
     </edge>
     <edge source="Book" target="Item">
-      <point x="0.0" y="-81.0" />
-      <point x="1881.0" y="575.0" />
-      <point x="1724.75" y="575.0" />
-      <point x="59.0" y="169.5" />
+      <point x="0.0" y="-13.0" />
+      <point x="396.0" y="127.0" />
+      <point x="371.0" y="127.0" />
+      <point x="18.5" y="13.0" />
+    </edge>
+    <edge source="Employee" target="Person">
+      <point x="0.0" y="-13.0" />
+      <point x="159.0" y="426.0" />
+      <point x="123.5" y="426.0" />
+      <point x="22.0" y="13.0" />
     </edge>
     <edge source="Member" target="Person">
       <point x="0.0" y="-13.0" />
-      <point x="44.0" y="1878.0" />
-      <point x="100.0" y="1878.0" />
-      <point x="-90.0" y="191.5" />
+      <point x="44.0" y="426.0" />
+      <point x="79.5" y="426.0" />
+      <point x="-22.0" y="13.0" />
+    </edge>
+    <edge source="PC" target="Item">
+      <point x="0.0" y="-13.0" />
+      <point x="309.0" y="127.0" />
+      <point x="334.0" y="127.0" />
+      <point x="-18.5" y="13.0" />
+    </edge>
+    <edge source="Tablet" target="PC">
+      <point x="0.0" y="-13.0" />
+      <point x="0.0" y="13.0" />
     </edge>
     <edge source="Chromebook" target="PC">
-      <point x="0.0" y="-36.0" />
-      <point x="289.5" y="1157.0" />
-      <point x="1240.9" y="1157.0" />
-      <point x="-209.5999999999999" y="268.5" />
-    </edge>
-    <edge source="Laptop" target="PC">
-      <point x="0.0" y="-36.0" />
-      <point x="2577.5" y="1157.0" />
-      <point x="1660.1" y="1157.0" />
-      <point x="209.5999999999999" y="268.5" />
+      <point x="0.0" y="-13.0" />
+      <point x="58.0" y="198.0" />
+      <point x="285.0" y="198.0" />
+      <point x="-24.0" y="13.0" />
     </edge>
     <edge source="Notebook" target="PC">
-      <point x="0.0" y="-36.0" />
-      <point x="2022.0" y="1167.0" />
-      <point x="1555.3" y="1167.0" />
-      <point x="104.79999999999995" y="268.5" />
+      <point x="0.0" y="-13.0" />
+      <point x="532.0" y="198.0" />
+      <point x="333.0" y="198.0" />
+      <point x="24.0" y="13.0" />
+    </edge>
+    <edge source="Laptop" target="PC">
+      <point x="0.0" y="-13.0" />
+      <point x="417.0" y="208.0" />
+      <point x="321.0" y="208.0" />
+      <point x="12.0" y="13.0" />
+    </edge>
+    <edge source="Item" target="IItem">
+      <point x="0.0" y="-13.0" />
+      <point x="0.0" y="13.0" />
     </edge>
     <edge source="Person" target="IPerson">
-      <point x="0.0" y="-191.5" />
-      <point x="0.0" y="58.0" />
+      <point x="0.0" y="-13.0" />
+      <point x="0.0" y="13.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="1416.0" y="1032.5" />
-  <SelectedNodes>
-    <node>Ultrabook</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic Group" zoom="1.0" x="789.5" y="353.0" />
+  <SelectedNodes />
   <Categories>
-    <Category>Fields</Category>
-    <Category>Constructors</Category>
-    <Category>Methods</Category>
-    <Category>Properties</Category>
     <Category>Inner Classes</Category>
   </Categories>
   <SCOPE>All</SCOPE>
