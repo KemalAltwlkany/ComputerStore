@@ -65,8 +65,19 @@ public class Book extends Item {
         return "Book{" +
                 "title='" + title + '\'' +
                 ", author='" + author + '\'' +
+                ", baseRentPrice=" + baseRentPrice +
+                ", basePurchasePrice=" + basePurchasePrice +
+                ", available=" + available +
+                '}';
+    }
+
+    @Override
+    public String verboseToString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
                 ", publishDate=" + publishDate +
-                ", description='" + description + '\'' +
+                ", description=" + description +
                 ", baseRentPrice=" + baseRentPrice +
                 ", basePurchasePrice=" + basePurchasePrice +
                 ", available=" + available +

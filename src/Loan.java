@@ -6,12 +6,15 @@ public class Loan {
     private Member loanedTo;
     private Item loanedItem;
     private LocalDate loanedDate;
-    //private double cost;
-    //private boolean overdue;
     //Attributes overdue and cost aren't kept as variables as they constantly change.
     //Therefore they are computed every time their "get" is called.
+    //However, if they were implemented, they'd look like:
+    //private double cost;
+    //private boolean overdue;
+
 
     //Maximum loan is for 15 day, afterwards the item has to be renewed and the price paid.
+    //Every additional day carries an extra 0.3 euro fee + baseRentPrice
 
     public Loan(Member loanedTo, Item loanedItem, LocalDate loanedDate) {
         this.loanedTo = loanedTo;
@@ -82,9 +85,16 @@ public class Loan {
     public String toString() {
         return "Loan{" +
                 "loanedTo=" + loanedTo.getName() +
-                " " + loanedTo.getSurname() +
-                ", loaned=" + loanedTo.getNamesOfLoanedItems() +
+                ", " + loanedTo.getSurname() +
                 ", loanedItem=" + this.getClass().getSimpleName() +
+                ", loanedDate=" + loanedDate +
+                '}';
+    }
+
+    public String verboseToString(){
+        return "Loan{" +
+                "loanedTo=" + loanedTo +
+                ", loanedItem=" + loanedItem +
                 ", loanedDate=" + loanedDate +
                 '}';
     }

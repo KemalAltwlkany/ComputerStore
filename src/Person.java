@@ -57,7 +57,7 @@ public class Person implements IPerson{
                 ", surname='" + surname + '\'' +
                 ", document=" + document +
                 ", birthDate=" + birthDate +
-                ", joiningDate=" + joiningDate +
+                ", joiningDate=" + joiningDate.format(formatter) +
                 '}';
     }
 

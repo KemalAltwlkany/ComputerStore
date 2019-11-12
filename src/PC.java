@@ -161,7 +161,7 @@ public abstract class PC extends  Item{
     @Override
     public abstract String toString();
 
-    public  String verboseToString(){
+    public String verboseToString(){
             return  "model='" + model + '\'' +
                     ", manufacturer='" + manufacturer + '\'' +
                     ", ram=" + ram +

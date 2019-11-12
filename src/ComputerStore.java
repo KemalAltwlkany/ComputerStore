@@ -1,3 +1,4 @@
+import javax.print.Doc;
 import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -7,30 +8,44 @@ public class ComputerStore {
     public static void main(String[] args) {
 //        DocumentTest1();
 //        DocumentTest2();
+//        DocumentTest3();
+//        DocumentTest4();
+//        Document tests are satisfactory and work as expected. Class Document is completed.
+
 //        PersonTest1();
 //        PersonTest2();
 //        PersonTest3();
+//        Person tests are satisfactory and work as expected. Class Person is completed.
+
 //        BookTest1();
-//        PCTest1();
-            StoreTest1();
-            MemberTest1();
-            LoanTest1();
+//        BookTest2();
+//        Book tests are satisfactory and work as expected. Class Book is completed
+
+
+        PCTest1();
+//            StoreTest1();
+//            MemberTest1();
+//            LoanTest1();
     }
 
-    //Tests the constructors and toString of class Document.
+    //Tests the constructors and method toString of class Document.
     public static void DocumentTest1(){
         System.out.println("---------***************************--------");
         System.out.println("---------RUNNING DocumentTest 1--------");
 
+        //1.) Default parameterless constructor
         Document doc1 = new Document();
         System.out.println(doc1);
 
+        //2.) Copy-constructor
         Document doc2 = new Document(doc1);
         System.out.println(doc2);
 
+        //3.) Custom constructor
         Document doc3 = new Document("Passport", "PASS_0001", "Auth", LocalDate.now());
         System.out.println(doc3);
 
+        //4.) Custom constructor without using LocalDate class
         Document doc4 = new Document("ID card", "ID_7999", "Auth", 03, 11, 1996);
         System.out.println(doc4);
 
@@ -41,10 +56,64 @@ public class ComputerStore {
     //Should fail because of invalid date argument (30th of February)
     public static void DocumentTest2(){
         System.out.println("---------***************************--------");
-        System.out.println("---------RUNNING DocumentTest 1--------");
+        System.out.println("---------RUNNING DocumentTest 2--------");
         Document doc1 = new Document("ID card", "N0_001", "Auth",30, 2, 1996);
         System.out.println();
-        System.out.println("---------FINISHED DocumentTest 1--------");
+        System.out.println("---------FINISHED DocumentTest 2--------");
+        System.out.println("---------***************************--------");
+    }
+
+    //Tests deep-copy and distinction between different document objects
+    public static void DocumentTest3(){
+        System.out.println("---------***************************--------");
+        System.out.println("---------RUNNING DocumentTest 3--------");
+        Document doc1 = new Document();
+        Document doc2 = new Document();
+        Document doc3 = new Document();
+        Document doc4 = new Document(doc3);
+
+        System.out.println(doc1);
+        System.out.println(doc2);
+        System.out.println(doc3);
+        System.out.println(doc4);
+        System.out.println();
+        System.out.println();
+
+        doc1.setNumber("PR1");
+        doc3.setNumber("PR3");
+
+        System.out.println(doc1);
+        System.out.println(doc2);
+        System.out.println(doc3);
+        System.out.println(doc4);
+
+        System.out.println();
+        System.out.println("---------FINISHED DocumentTest 3--------");
+        System.out.println("---------***************************--------");
+    }
+
+    //Tests the sets and gets
+    public static void DocumentTest4(){
+        System.out.println("---------***************************--------");
+        System.out.println("---------RUNNING DocumentTest 4--------");
+        Document doc1 = new Document();
+        Document doc2 = new Document(doc1);
+        System.out.println(doc1);
+        System.out.println(doc2);
+        System.out.println();
+        System.out.println();
+
+        System.out.println("doc1, type=" + doc1.getType());
+        System.out.println("doc1, number=" +  doc1.getNumber());
+        System.out.println("doc1, authority=" +  doc1.getAuthority());
+        System.out.println("doc1, issueDate=" +  doc1.getIssueDate());
+
+        doc1.setNumber("new number1");
+        doc1.setType("Student card");
+        doc1.setAuthority("TU Dublin");
+        doc1.setIssueDate(LocalDate.of(2002, 5, 11));
+        System.out.println("Transformed doc1=" + doc1);
+        System.out.println("---------FINISHED DocumentTest 4--------");
         System.out.println("---------***************************--------");
     }
 
@@ -53,17 +122,21 @@ public class ComputerStore {
         System.out.println("---------***************************--------");
         System.out.println("---------RUNNING PersonTest 1--------");
 
+        //1.) Default, parameterless constructor
         Person pers1 = new Person();
         System.out.println(pers1);
 
+        //2.) Copy-constructor
         Person pers2 = new Person(pers1);
         System.out.println(pers2);
 
+        //3.) Custom constructor
         Person pers3 = new Person("Kemal", "Altwlkany");
         System.out.println(pers3);
 
         Document doc4 = new Document();
         LocalDate birthDate = LocalDate.of(1996, 11, 3);
+        //4.) Custom constructor, using generated document and LocalDate
         Person pers4 = new Person("Kemal", "Alt", doc4, birthDate, LocalDate.now());
         System.out.println(pers4);
 
@@ -73,13 +146,12 @@ public class ComputerStore {
 
     //Tests the joinedFor and joinedSince methods
     public static void PersonTest2(){
-
         System.out.println("---------***************************--------");
         System.out.println("---------RUNNING PersonTest 2--------");
 
         Person pers1 = new Person();
-        System.out.println("pers1 is a member for " + pers1.joinedFor());
-        System.out.println("pers1 is a member since " + pers1.getJoiningDate() );
+        System.out.println("Output should be 0. pers1 is a member for " + pers1.joinedFor());
+        System.out.println("Output should be date of running. pers1 is a member since " + pers1.getJoiningDate() );
 
         Document doc4 = new Document();
         LocalDate birthDate = LocalDate.of(1996, 11, 3);
@@ -89,21 +161,25 @@ public class ComputerStore {
 
         System.out.println("---------FINISHED PersonTest 2--------");
         System.out.println("---------***************************--------");
-
     }
 
-    //Tests the legitimacy of input data to the constructor
+    //Tests the sets and gets
     public static void PersonTest3(){
-        System.out.println("---------RUNNING PersonTest 3--------");
         System.out.println("---------***************************--------");
+        System.out.println("---------RUNNING PersonTest 3--------");
 
-        Document doc1 = new Document();
-        Person pers1 = new Person("AA", "BB",  doc1, LocalDate.of(2006, 12, 30), LocalDate.now());
-        System.out.println(pers1);
+        Person p1 = new Person();
+        System.out.println(p1);
+        p1.setName("Kemal");
+        p1.setSurname("Altwlkany");
+        p1.setBirthDate(LocalDate.of(1996, 11, 3));
+        p1.setDocument(new Document());
+        p1.getDocument().setType("Student card");
+        p1.setJoiningDate(LocalDate.of(2018, 12, 12));
+        System.out.println(p1);
 
         System.out.println("---------FINISHED PersonTest 3--------");
         System.out.println("---------***************************--------");
-
     }
 
     //Tests the constructors of class Book
@@ -111,11 +187,17 @@ public class ComputerStore {
         System.out.println("---------***************************--------");
         System.out.println("---------RUNNING BookTest 1--------");
 
+        //1.) Default parameterless constructor
         Book b1 = new Book();
         System.out.println(b1);
 
+        //2.) Custom constructor
         Book b2 = new Book("Conpts of Prog Langs", "Robert Sebesta", LocalDate.of(2012, 1, 1), 0.1, 14.99);
         System.out.println(b2);
+
+        //3.) Copy constructor
+        Book b3 = new Book(b1);
+        System.out.println(b3);
 
 
         System.out.println("---------FINISHED BookTest 1--------");
@@ -123,47 +205,81 @@ public class ComputerStore {
 
     }
 
-    //Tests the constructors of class PC (Laptop, Notebook etc..)
+    //Tests the sets and gets
+    public static void BookTest2(){
+        System.out.println("---------***************************--------");
+        System.out.println("---------RUNNING BookTest 2--------");
+
+        Book b1 = new Book();
+        System.out.println(b1);
+
+        b1.setTitle("W3Schools Java");
+        b1.setAuthor("Java Tutor");
+        b1.setPublishDate(LocalDate.of(2012, 8, 15));
+        b1.setAvailable(false);
+        System.out.println("New author=" + b1.getAuthor() + ", new title=" + b1.getTitle() + ", new publishDate=" + b1.getPublishDate());
+        b1.setBaseRentPrice(101.101);
+        b1.setBasePurchasePrice(88.99);
+        b1.setDescription("This is a really good book to learn programming.");
+        System.out.println("Description of b1=" + b1.getDescription());
+        System.out.println("new rent price=" + b1.getBaseRentPrice() + ", new purchase price=" + b1.getBasePurchasePrice());
+        System.out.println(b1);
+        System.out.println(b1.verboseToString());
+
+
+        System.out.println("---------FINISHED BookTest 2--------");
+        System.out.println("---------***************************--------");
+    }
+
+    //Tests the constructors of child classes of PC (Laptop, Notebook etc..)
     public static void PCTest1(){
-        Laptop pc1 = new Laptop("HP", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
-        Laptop pc2 = new Laptop("Dell", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
-        Laptop pc3 = new Laptop("Lenovo", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
+        System.out.println("---------***************************--------");
+        System.out.println("---------RUNNING PCTest 1--------");
+        Laptop pc1 = new Laptop("HP-lap","HP", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
+        Laptop pc2 = new Laptop("Dell-lap","Dell", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
+        Laptop pc3 = new Laptop("Lenovo-lap", "Lenovo", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
         Laptop pc4 = new Laptop();
         Laptop pc5 = new Laptop(pc1);
         pc1.setCpu_speed(5.6);
         System.out.println(pc1);
+        System.out.println(pc2);
+        System.out.println(pc3);
+        System.out.println(pc4);
         System.out.println(pc5);
 
-        DesktopPC pc6 = new DesktopPC("HP DESKTOP", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
+        DesktopPC pc6 = new DesktopPC("HP Desktop","HP DESKTOP", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
         DesktopPC pc7 = new DesktopPC(pc6);
         System.out.println(pc6);
         System.out.println(pc7);
 
-        Notebook pc8 = new Notebook("HP NOTEBOOK", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
+        Notebook pc8 = new Notebook("HP Notebook ", "HP NOTEBOOK", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
         Notebook pc81 = new Notebook(pc8);
         pc81.setColour("YELLOW");
         System.out.println(pc8);
         System.out.println(pc81);
 
-        Ultrabook pc9 = new Ultrabook("HP ULTRABOOK", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
+        Ultrabook pc9 = new Ultrabook("HP Ultrabook", "HP ULTRABOOK", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
         Ultrabook pc91 = new Ultrabook(pc9);
         pc91.setAvailable(false);
         System.out.println(pc9);
         System.out.println(pc91);
 
 
-        Tablet pc10 = new Tablet("HP TABLET", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
+        Tablet pc10 = new Tablet("HP Tablet","HP TABLET", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
         Tablet pc101 = new Tablet(pc10);
         pc101.setDescription("This is a tablet.");
         System.out.println(pc10);
         System.out.println(pc101);
 
 
-        Chromebook pc11 = new Chromebook("HP CHROMEBOOK", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
+        Chromebook pc11 = new Chromebook("HP Chromebook", "HP CHROMEBOOK", 8, 1.5, 2.7, 1.2, "Intel Core i7 - 7200K", "AMD Radeon 1", "gray", 12, 800);
         Chromebook pc111 = new Chromebook(pc11);
         pc111.setDescription("This is a chromebook.");
         System.out.println(pc11);
         System.out.println(pc111);
+
+        System.out.println("---------FINISHED PCTest 1--------");
+        System.out.println("---------***************************--------");
 
     }
 
@@ -254,16 +370,12 @@ public class ComputerStore {
         //pctab1.setName("iPad 4");
 
         DesktopPC pcdesk1 = new DesktopPC();
-        pcdesk1.setName("IMTEC");
 
         Notebook pcnote1 = new Notebook();
-        pcnote1.setName("ASUS Light");
 
         Ultrabook pcultra1 = new Ultrabook();
-        pcultra1.setName("Zenbook ULTRA");
 
         Chromebook pcchrome1 = new Chromebook();
-        pcchrome1.setName("Chrome by Google");
 
         Loan l1 = new Loan(m1, b1, LocalDate.of(2011, 1, 10));
         Loan l2 = new Loan(m2, b2, LocalDate.of(2012, 2, 11));
@@ -296,8 +408,6 @@ public class ComputerStore {
         l1.getLoanedTo().setName("PERSON 1");
         m2.setName("PERSON 2");
 
-        l1.getLoanedItem().setName("FAKE ITEM 1");
-        b2.setName("NEW FAKE BOOK 2");
         System.out.println(l1);
         System.out.println(l2);
         System.out.println();

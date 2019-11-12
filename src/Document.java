@@ -3,21 +3,19 @@ import java.time.format.DateTimeFormatter;
 
 public class Document {
     private String type;
-    //Unfortunately, a document number is usually an alphanumerical sequence, not an actual num, max 20 chars
-    private String number;
+    private String number; //Unfortunately, a document number is usually an alphanumerical sequence, not an actual num, max 20 chars
     private String authority; //max 30 chars
     private LocalDate issueDate;
+
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static String[] validDocumentTypes = {"ID card", "Passport", "Drivers licence", "Student card"};
-    //for testing reasons only
-    private static int fakeDocNumber = 0;
-    //FEATURE - implement the image as well?
+    private static int fakeDocNumber = 0;     //for testing reasons only
+    //FEATURE - implement the image later as well?
 
-    /*
-    This constructor exists for testing purposes only. It is not meant to be used in the application.
+
+    /* This constructor exists for testing purposes only. It is not meant to be used in the application.
     It uses the static attribute fakeDocNumber in order to create different document numbers which is useful
-    for distinction between document objects for testing purposes
-    */
+    for distinction between document objects for testing purposes */
     public Document(){
         type = "Passport";
         number = "FakeDoc__" + String.valueOf(fakeDocNumber);

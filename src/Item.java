@@ -83,4 +83,6 @@ public abstract class Item implements  IItem{
     @Override
     public abstract String toString();
 
+    public abstract String verboseToString();
+
 }
