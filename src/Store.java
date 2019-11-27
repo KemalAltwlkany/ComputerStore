@@ -1,5 +1,7 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Store {
     private String name;
@@ -28,6 +30,21 @@ public class Store {
         items.add(x);
     }
 
+    //Update 27.11.2019.
+    ///--------------
+
+    //Sorts the loans by FIFO rule
+    public void sortLoans(){
+        Collections.sort(loans);
+    }
+
+    public ArrayList<Loan> getLoans() {
+        return loans;
+    }
+
+    //Update 27.11.2019.
+    ///--------------
+
     public void removeItem(Item x){
         items.remove(x);
     }
@@ -52,12 +69,15 @@ public class Store {
         loans.add(x);
     }
 
+
+    //BIG CHANGE - this function now expects three parameters!
+    //Added the last parameter, LocalDate, which enables to set the date of the loan
     //Returns true/false depending whether the loan was successful or not.
-    public boolean createLoan(Member m, Item it){
+    public boolean createLoan(Member m, Item it, LocalDate date){
         //CHECK IF ITEM IS LOANED ALREADY
         //ADD FEATURE LATER TO CREATE MAX NUMBER OF LOANS PER MEMBER
         if (it.isAvailable()){
-            Loan new_loan = new Loan(m, it, LocalDate.now());
+            Loan new_loan = new Loan(m, it, date);
             loans.add(new_loan);
 
             //Very important, the member and item class need to be updated as well!

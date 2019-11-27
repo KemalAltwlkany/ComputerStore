@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
 
-public class Loan {
+public class Loan implements Comparable<Loan>{
     private Member loanedTo;
     private Item loanedItem;
     private LocalDate loanedDate;
@@ -101,5 +101,45 @@ public class Loan {
                 ", loanedItem=" + loanedItem +
                 ", loanedDate=" + loanedDate +
                 '}';
+    }
+
+
+    //Update 27.11.2019.
+
+    //Sorts the loans by following logic: FIFO
+    //(first to loan, first in order)
+    @Override
+    public int compareTo(Loan loan) {
+        LocalDate date1 = this.getLoanedDate();
+        LocalDate date2 = loan.getLoanedDate();
+        if (date1.isBefore(date2)){
+            return -1;
+        }
+        if (date1.isAfter(date2)){
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        //If the object is compared with itself it is obviously equal to itself
+        if ( obj == this){
+            return true;
+        }
+
+        //Check whether obj is an instance of class Loan
+        if (!(obj instanceof  Loan)){
+            return false;
+        }
+
+        //Since now it obviously is an instance of class Loan, we typecast it to Loan
+        Loan l2 = (Loan) obj;
+
+        if (l2.getLoanedTo().equals(this.getLoanedTo())){
+            return true;
+        }
+        else return  false;
+
     }
 }

@@ -512,12 +512,12 @@ public class ComputerStore {
         System.out.println();
         System.out.println();
         System.out.println("1st member rents 1 item, 2nd member 2 items, and 3rd member 3 items, 4th member 0 items");
-        st1.createLoan(m1, b1);
-        st1.createLoan(m2, b2);
-        st1.createLoan(m2, nb1);
-        st1.createLoan(m3, pc1);
-        st1.createLoan(m3, lap1);
-        st1.createLoan(m3, lap2);
+        st1.createLoan(m1, b1, LocalDate.now());
+        st1.createLoan(m2, b2, LocalDate.now());
+        st1.createLoan(m2, nb1, LocalDate.now());
+        st1.createLoan(m3, pc1, LocalDate.now());
+        st1.createLoan(m3, lap1, LocalDate.now());
+        st1.createLoan(m3, lap2, LocalDate.now());
         System.out.println(st1);
 
         System.out.println("---------FINISHED StoreTest 2--------");
@@ -532,11 +532,11 @@ public class ComputerStore {
         Member m1 = new Member("James", "Bond");
         Member m2 = new Member("Johnnie", "English");
         Tablet tab1 = new Tablet();
-        st.createLoan(m1, tab1);
+        st.createLoan(m1, tab1, LocalDate.now());
         st.addMember(m1); st.addMember(m2); st.addItem(tab1);
         System.out.println(st);
         System.out.println("Store will now try to loan item which is already loaned.");
-        st.createLoan(m2, tab1);
+        st.createLoan(m2, tab1, LocalDate.now());
         System.out.println(st);
 
         System.out.println("---------FINISHED StoreTest 3--------");
@@ -572,10 +572,10 @@ public class ComputerStore {
 
         System.out.println(st1);
         System.out.println("Creating loans 1-1, 2-2, 3-3, 4-4");
-        st1.createLoan(m1, b1);
-        st1.createLoan(m2, b2);
-        st1.createLoan(m3, b3);
-        st1.createLoan(m4, b4);
+        st1.createLoan(m1, b1, LocalDate.now());
+        st1.createLoan(m2, b2, LocalDate.now());
+        st1.createLoan(m3, b3, LocalDate.now());
+        st1.createLoan(m4, b4, LocalDate.now());
         System.out.println();
         System.out.println(st1);
         System.out.println("Deleting loans 1,2,3");

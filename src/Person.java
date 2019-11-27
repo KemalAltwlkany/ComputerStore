@@ -138,6 +138,25 @@ public class Person implements IPerson{
         this.joiningDate = joiningDate;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this){
+            return true;
+        }
+
+        if (!(obj instanceof Person)){
+            return false;
+        }
+
+        Person p2 = (Person) obj;
+        if (this.getName().equals(((Person) obj).getName())){
+            return true;
+        }
+        else return false;
+
+    }
+
+
     /*
     public String membersince(){
         LocalDate example = LocalDate.of(2007, 10, 19);

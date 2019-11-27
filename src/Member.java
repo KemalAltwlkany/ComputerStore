@@ -50,10 +50,23 @@ public class Member extends Person {
                 '}';
     }
 
-
-
     @Override
     public String joinedFor() {
         return "MEMBER FOR: " + super.joinedFor();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this){
+            return true;
+        }
+        if (!(obj instanceof Member)){
+            return false;
+        }
+        Member p2 = (Member) obj;
+        if ( this.getName().equals(p2.getName()) ){
+            return true;
+        }
+        else return false;
     }
 }
