@@ -10,6 +10,7 @@ class StoreTest {
     void addItem() {
     }
 
+    //Tests whether the Loans are sorted correctly
     @org.junit.jupiter.api.Test
     void sortLoans() {
         System.out.println("---------***************************--------");
@@ -44,23 +45,25 @@ class StoreTest {
         System.out.println();
         st1.createLoan(m1, b1, LocalDate.of(2012, 12, 12)); //2nd
         st1.createLoan(m2, b2, LocalDate.of(2002, 11, 3)); //1st
-        st1.createLoan(m3, b3, LocalDate.of(2019, 4, 16)); //3rd
-        st1.createLoan(m4, b4, LocalDate.now()); //4th
+        st1.createLoan(m3, b3, LocalDate.now()); //4th
+        st1.createLoan(m4, b4, LocalDate.of(2019, 4, 16)); //3rd
 
         System.out.println();
         System.out.println(st1);
         System.out.println();
         st1.sortLoans();
         System.out.println("Now sorting the loans of the store: ");
+        System.out.println("Expecting output :2nd, 1st, 4th, 3rd loan");
         System.out.println();
         System.out.println(st1);
 
 
         //Create loans and check whether they are equal to the sorted array
+
         Loan l1 = new Loan(m2, b2, LocalDate.of(2002, 11, 3));
         Loan l2 = new Loan(m1, b1, LocalDate.of(2012, 12, 12));
-        Loan l3 = new Loan(m3, b3, LocalDate.of(2019, 4, 16));
-        Loan l4 = new Loan(m4, b4, LocalDate.now());
+        Loan l3 = new Loan(m4, b4, LocalDate.of(2019, 4, 16));
+        Loan l4 = new Loan(m3, b3, LocalDate.now());
 
         ArrayList<Loan> sortedLoans = st1.getLoans();
 

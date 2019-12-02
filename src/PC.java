@@ -177,4 +177,7 @@ public abstract class PC extends  Item{
                     ", available=" + available +
                     '}';
     }
+
+    @Override
+    public abstract boolean equals(Object obj);
 }

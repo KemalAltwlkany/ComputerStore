@@ -83,4 +83,27 @@ public class Book extends Item {
                 ", available=" + available +
                 '}';
     }
+
+    //Update 02.12.2019.
+    //Two books are equal if they have the same author, publish date and title
+
+    @Override
+    public boolean equals(Object obj) {
+        //Are the references pointing to the same address in memory?
+        if (obj == this) {
+            return true;
+        }
+
+        //If obj isn't an instance of class Book then it is obviously not a book
+        if (!(obj instanceof Book)) {
+            return false;
+        }
+
+        //obj is certainly an instance of class Book and can be casted to Book
+        Book b2 = (Book) obj;
+        if (this.getTitle().equals(b2.getTitle()) && this.getAuthor().equals(b2.getAuthor()) && this.getPublishDate().equals(b2.getPublishDate())){
+            return true;
+        }
+        return false;
+    }
 }

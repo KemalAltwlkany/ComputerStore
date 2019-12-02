@@ -29,4 +29,29 @@ public class Chromebook extends PC{
     public String verboseToString(){
         return "Chromebook{" + super.verboseToString();
     }
+
+
+    //Update 02.12.2019.
+    //Two PC's are the same if they have the same model name, for simplicity reasons
+    @Override
+    public boolean equals(Object obj) {
+        //Are the references pointing to the same address in memory?
+        if (obj == this) {
+            return true;
+        }
+
+        //If obj isn't an instance of class Chromebook then it is obviously not a book
+        if (!(obj instanceof Chromebook)) {
+            return false;
+        }
+
+        //obj is certainly an instance of class Chromebook and can be casted to Book
+        Chromebook b2 = (Chromebook) obj;
+        if ( this.getModel().equals(b2.getModel()) ){
+            return true;
+        }
+        return false;
+    }
 }
+
+

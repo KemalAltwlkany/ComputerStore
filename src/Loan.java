@@ -103,11 +103,11 @@ public class Loan implements Comparable<Loan>{
                 '}';
     }
 
-
     //Update 27.11.2019.
-
-    //Sorts the loans by following logic: FIFO
+    //We define a loan to be less than an other loan if it's been created after.
+    //Required to sort the loans by following logic: FIFO
     //(first to loan, first in order)
+    // e.g. 10.10.2018. < 11.11.2019.
     @Override
     public int compareTo(Loan loan) {
         LocalDate date1 = this.getLoanedDate();
@@ -121,6 +121,7 @@ public class Loan implements Comparable<Loan>{
         return 0;
     }
 
+    //Two loans are equal if they are created on the same day, and involve the same people and items
     @Override
     public boolean equals(Object obj) {
         //If the object is compared with itself it is obviously equal to itself
@@ -136,10 +137,10 @@ public class Loan implements Comparable<Loan>{
         //Since now it obviously is an instance of class Loan, we typecast it to Loan
         Loan l2 = (Loan) obj;
 
-        if (l2.getLoanedTo().equals(this.getLoanedTo())){
+        if ( l2.getLoanedTo().equals(this.getLoanedTo()) && l2.getLoanedItem().equals(this.getLoanedItem()) && l2.getLoanedDate().equals(this.getLoanedDate()) ){
             return true;
         }
-        else return  false;
+        return  false;
 
     }
 }

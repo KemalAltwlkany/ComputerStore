@@ -138,6 +138,8 @@ public class Person implements IPerson{
         this.joiningDate = joiningDate;
     }
 
+
+    //For simplicity, two people are equal if their names and surnames are equal.
     @Override
     public boolean equals(Object obj) {
         if (obj == this){
@@ -149,11 +151,10 @@ public class Person implements IPerson{
         }
 
         Person p2 = (Person) obj;
-        if (this.getName().equals(((Person) obj).getName())){
+        if ( this.getName().equals( ((Person) obj).getName()) && this.getSurname().equals( ((Person) obj).getSurname()) ){
             return true;
         }
-        else return false;
-
+        return false;
     }
 
 

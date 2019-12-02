@@ -85,4 +85,9 @@ public abstract class Item implements  IItem{
 
     public abstract String verboseToString();
 
+    //Update 02.12.2019.
+
+    //no sense to compare two abstract items
+    @Override
+    public abstract boolean equals(Object obj);
 }
