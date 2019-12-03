@@ -2,7 +2,7 @@ import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Member extends Person {
+public class Member extends Person implements Comparable<Person>{
     private ArrayList<Loan> loans= new ArrayList<>();
 
     public Member() {
@@ -64,9 +64,22 @@ public class Member extends Person {
             return false;
         }
         Member p2 = (Member) obj;
-        if ( this.getName().equals(p2.getName()) ){
+        if ( this.getName().equals(p2.getName()) && this.getJoiningDate().equals(p2.getJoiningDate())){
             return true;
         }
         else return false;
+    }
+
+    //Update 03.12.2019.
+    //Members are compared based on their date of joining the club.
+    @Override
+    public int compareTo(Person person) {
+        if ( this.getJoiningDate().isEqual(person.getJoiningDate())){
+            return 0;
+        }
+        else if ( this.getJoiningDate().isBefore(person.getJoiningDate())){
+            return -1;
+        }
+        return 1;
     }
 }

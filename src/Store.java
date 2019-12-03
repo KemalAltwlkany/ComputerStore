@@ -56,6 +56,33 @@ public class Store {
         System.out.println("----------------------------------------------------------");
     }
 
+    //Sorts the employees by salary criteria
+    public void sortEmployees(){
+        //works
+        //Collections.sort(this.staff);
+        //works
+        //staff.sort(Employee.EmployeeComparator);
+        //works
+        //staff.sort(Employee::compareTo);
+        //works
+        //Collections.sort(this.staff, Employee::compareTo);
+        //works
+        Collections.sort(this.staff, Employee.EmployeeComparator);
+    }
+
+    //Sorts members by joining Date
+    public void sortMembers(){
+        members.sort(Member::compareTo);
+    }
+
+    public ArrayList<Employee> getStaff() {
+        return staff;
+    }
+
+    public ArrayList<Member> getMembers() {
+        return members;
+    }
+
     //Update 27.11.2019.
     ///--------------
 
@@ -196,4 +223,5 @@ public class Store {
                 ", loans=" + loans +
                 '}';
     }
+
 }

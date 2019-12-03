@@ -96,8 +96,37 @@ public abstract class Employee extends Person implements Comparable<Employee> {
         else if ( employee.getSalary() - this.getSalary() < 0){
             return 1;
         }
-        else return 1;
+        else return -1;
     }
+
+    //Two Employees are equal if they have the same name, surname and salary.
+    @Override
+    public boolean equals(Object obj) {
+        //If the object is compared with itself it is obviously equal to itself
+        if ( obj == this){
+            return true;
+        }
+
+        //Check whether obj is an instance of class Employee
+        //NOTE - interestingly enough, this will return true even for objects of type Salesman, ComputerSpecialist and Manager
+        if (!(obj instanceof  Employee)){
+            return false;
+        }
+
+        //Since now it obviously is an instance of class Employee, we typecast it to Employee
+        Employee e2 = (Employee) obj;
+        if ( e2.getName().equals(this.getName()) && e2.getSurname().equals(this.getSurname()) && ( ( (Double) e2.getSalary()).equals(this.getSalary())) ){
+            return true;
+        }
+        return false;
+    }
+
+    public static Comparator<Employee> EmployeeComparator = new Comparator<Employee>() {
+        @Override
+        public int compare(Employee employee, Employee t1) {
+            return employee.compareTo(t1);
+        }
+    };
 
 
 }

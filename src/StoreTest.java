@@ -1,3 +1,5 @@
+import org.junit.jupiter.api.Test;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -76,6 +78,7 @@ class StoreTest {
         System.out.println("---------***************************--------");
     }
 
+    @org.junit.jupiter.api.Test
     void sortEmployees(){
         Store st1 = new Store();
         Salesman s1 = new Salesman();
@@ -94,9 +97,66 @@ class StoreTest {
         m1.setSalary(100000);
         Manager m2 = new Manager();
         m2.setSalary(200000);
+
         st1.addEmployee(s1); st1.addEmployee(s2); st1.addEmployee(s3); st1.addEmployee(s4);
         st1.addEmployee(cs1); st1.addEmployee(cs2); st1.addEmployee(m1); st1.addEmployee(m2);
+        ArrayList<Employee> employees = new ArrayList<>();
+        employees.add(s4);
+        employees.add(s2);
+        employees.add(s1);
+        employees.add(s3);
+        employees.add(cs1);
+        employees.add(cs2);
+        employees.add(m1);
+        employees.add(m2);
 
+
+        //System.out.println(s1.getClass());
+        //System.out.println(s1 instanceof  Salesman);
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println(st1.getStaff());
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println("After sorting the staff: ");
+        st1.sortEmployees();
+        System.out.println(st1.getStaff());
+        System.out.println("--------------------------------------------------------------------");
+
+        assertEquals(employees, st1.getStaff());
     }
 
+    @Test
+    void sortMembers() {
+        Store st1 = new Store();
+
+        Member m1 = new Member();
+        m1.setJoiningDate(LocalDate.of(2009, 10, 10));
+        Member m2 = new Member();
+        m2.setJoiningDate(LocalDate.of(2015, 10, 10));
+        Member m3 = new Member();
+        m3.setJoiningDate(LocalDate.of(2011, 3, 5));
+        Member m4 = new Member();
+        m4.setJoiningDate(LocalDate.now());
+
+        st1.addMember(m1);
+        st1.addMember(m2);
+        st1.addMember(m3);
+        st1.addMember(m4);
+
+        ArrayList<Member> members = new ArrayList<>();
+        members.add(m1);
+        members.add(m3);
+        members.add(m2);
+        members.add(m4);
+
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println(st1.getMembers());
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println("After sorting the members: ");
+        st1.sortMembers();
+        System.out.println(st1.getMembers());
+        System.out.println("--------------------------------------------------------------------");
+
+
+        assertEquals(members, st1.getMembers());
+    }
 }
