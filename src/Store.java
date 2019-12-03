@@ -1,7 +1,11 @@
+import com.sun.source.tree.LiteralTree;
+
+import javax.swing.text.html.HTMLDocument;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 
 public class Store {
     private String name;
@@ -40,6 +44,16 @@ public class Store {
 
     public ArrayList<Loan> getLoans() {
         return loans;
+    }
+
+    public void printEmployeeSalaries(){
+        Iterator it = staff.iterator();
+        System.out.println("----------------------------------------------------------");
+        while(it.hasNext()){
+            Employee emp = (Employee) it.next();
+            System.out.println("Employee: " + emp.getName() + ", " + emp.getSurname() + ", " + emp.getSalary() + "e.");
+        }
+        System.out.println("----------------------------------------------------------");
     }
 
     //Update 27.11.2019.

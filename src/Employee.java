@@ -1,6 +1,7 @@
 import java.time.LocalDate;
+import java.util.Comparator;
 
-public abstract class Employee extends Person{
+public abstract class Employee extends Person implements Comparable<Employee> {
     protected double salary;
     protected String healthCareNumber; //country specific format, lets say exactly 14 characters
 
@@ -83,6 +84,21 @@ public abstract class Employee extends Person{
     }
 
     public abstract void setSupervisor(Manager supervisor);
+
+    //02.12.2019. Update
+
+
+    @Override
+    public int compareTo(Employee employee) {
+        if ( ((Double) employee.getSalary()).equals(this.getSalary())  ){
+            return 0;
+        }
+        else if ( employee.getSalary() - this.getSalary() < 0){
+            return 1;
+        }
+        else return 1;
+    }
+
 
 }
 

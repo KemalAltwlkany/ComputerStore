@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -59,5 +60,40 @@ class LoanTest {
         Loan l7 = new Loan(m1, b1, LocalDate.of(2000, 10, 10));
         Loan l8 = new Loan(m1, b1, LocalDate.of(2000, 10, 10));
         assertEquals(true, l7.equals(l8));
+    }
+
+    @Test
+    void getCost() {
+        Member m1 = new Member();
+        Notebook n1 = new Notebook();
+        n1.setBaseRentPrice(1.5);
+
+        //Create loan 10 days ago
+        Loan l1 = new Loan(m1, n1, LocalDate.now().minusDays(10));
+        //The rent is equal to 10*1.5 euro = 15.0 euro
+        assertEquals(15.0, l1.getCost());
+
+        //Create overdue loan, with 7 days overdue
+        Loan l2 = new Loan(m1, n1, LocalDate.now().minusDays(15+7));
+        assertEquals(15*1.5 + 1.8*7, l2.getCost());
+
+
+    }
+
+    @Test
+    void testComparator(){
+        Loan l1 = new Loan(new Member(), new Notebook(), LocalDate.of(2019, 10, 10));
+        Loan l2 = new Loan(new Member(), new Notebook(), LocalDate.of(2019, 10, 9));
+        Loan l3 = new Loan(new Member(), new Notebook(), LocalDate.of(2019, 10, 8));
+        Loan l4 = new Loan(new Member(), new Notebook(), LocalDate.of(2019, 10, 11));
+        //Earlier date comes first
+        ArrayList<Loan> loans = new ArrayList<>();
+        loans.add(l1); loans.add(l2); loans.add(l3); loans.add(l4);
+        System.out.println(loans);
+        loans.sort(Loan.loanComparator);
+        System.out.println(loans);
+        ArrayList<Loan> loans2 = new ArrayList<>();
+        loans2.add(l3); loans2.add(l2); loans2.add(l1); loans2.add(l4);
+        assertEquals(loans, loans2);
     }
 }

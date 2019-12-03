@@ -6,9 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class StoreTest {
 
-    @org.junit.jupiter.api.Test
-    void addItem() {
-    }
+
 
     //Tests whether the Loans are sorted correctly
     @org.junit.jupiter.api.Test
@@ -78,59 +76,27 @@ class StoreTest {
         System.out.println("---------***************************--------");
     }
 
-    @org.junit.jupiter.api.Test
-    void removeItem() {
+    void sortEmployees(){
+        Store st1 = new Store();
+        Salesman s1 = new Salesman();
+        s1.setSalary(277);
+        Salesman s2 = new Salesman();
+        s2.setSalary(200);
+        Salesman s3 = new Salesman();
+        s3.setSalary(500);
+        Salesman s4 = new Salesman();
+        s4.setSalary(190);
+        ComputerSpecialist cs1 = new ComputerSpecialist();
+        cs1.setSalary(3500);
+        ComputerSpecialist cs2 = new ComputerSpecialist();
+        cs2.setSalary(4700);
+        Manager m1 = new Manager();
+        m1.setSalary(100000);
+        Manager m2 = new Manager();
+        m2.setSalary(200000);
+        st1.addEmployee(s1); st1.addEmployee(s2); st1.addEmployee(s3); st1.addEmployee(s4);
+        st1.addEmployee(cs1); st1.addEmployee(cs2); st1.addEmployee(m1); st1.addEmployee(m2);
+
     }
 
-    @org.junit.jupiter.api.Test
-    void addEmployee() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void removeEmployee() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void addMember() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void removeMember() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void addLoan() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void createLoan() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void returnItem() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void removeLoan() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void getEmployeeSalary() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void getLoanedItems() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void getName() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void setName() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void testToString() {
-    }
 }

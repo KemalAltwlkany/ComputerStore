@@ -1,8 +1,9 @@
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
+import java.util.Comparator;
 
-public class Loan implements Comparable<Loan>{
+public class Loan implements Comparable<Loan> {
     private Member loanedTo;
     private Item loanedItem;
     private LocalDate loanedDate;
@@ -72,7 +73,7 @@ public class Loan implements Comparable<Loan>{
     public double getCost(){
         if (this.isOverDue()){
             //15 days for regular price + 0.3 euros EXTRA per due day.
-            double cost = 15*loanedItem.getBaseRentPrice() + overDueDays()*(loanedItem.getBaseRentPrice() + 0.3);
+            double cost = 15*loanedItem.getBaseRentPrice() + overDueDays()*(loanedItem.getBaseRentPrice()+0.3);
             return cost;
         }
         else{
@@ -143,4 +144,12 @@ public class Loan implements Comparable<Loan>{
         return  false;
 
     }
+
+    public static Comparator<Loan> loanComparator = new Comparator<Loan>() {
+        @Override
+        public int compare(Loan loan, Loan t1) {
+            return loan.compareTo(t1);
+        }
+    };
+
 }
