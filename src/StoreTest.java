@@ -159,4 +159,24 @@ class StoreTest {
 
         assertEquals(members, st1.getMembers());
     }
+
+    @Test
+    void computeBenchmarks(){
+        ArrayList<PC> pcs = new ArrayList<>();
+        pcs.add(new Laptop());
+        pcs.add(new DesktopPC());
+        pcs.add(new Chromebook());
+        pcs.add(new Tablet());
+        pcs.add(new Ultrabook());
+        pcs.add(new Notebook());
+        System.out.println(pcs);
+        for(PC x : pcs){
+            System.out.println(x.computeBenchmark());
+        }
+        System.out.println("-------------------------------------------------");
+        pcs.sort(PC.PCComparator);
+        for(PC x: pcs){
+            System.out.println(x.computeBenchmark());
+        }
+    }
 }

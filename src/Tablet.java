@@ -52,4 +52,10 @@ public class Tablet extends PC{
         return false;
     }
 
+    //Update 05.12.2019.
+    @Override
+    public double computeBenchmark() {
+        return gpu_speed*0.5 + cpu_speed + ram/24 + storage/1024;
+    }
+
 }

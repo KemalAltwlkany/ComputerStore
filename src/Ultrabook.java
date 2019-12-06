@@ -52,4 +52,10 @@ public class Ultrabook extends PC{
         return false;
     }
 
+    //Update 05.12.2019.
+    @Override
+    public double computeBenchmark() {
+        return gpu_speed*3.5 + cpu_speed*4 + ram*2 + storage*2;
+    }
+
 }

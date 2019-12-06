@@ -1,3 +1,5 @@
+import java.util.Comparator;
+
 public abstract class Item implements  IItem{
     protected String description;
     protected double baseRentPrice; //per day by definition
@@ -90,4 +92,5 @@ public abstract class Item implements  IItem{
     //no sense to compare two abstract items
     @Override
     public abstract boolean equals(Object obj);
+
 }

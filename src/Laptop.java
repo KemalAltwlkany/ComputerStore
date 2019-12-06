@@ -53,6 +53,13 @@ public class Laptop extends PC{
         return false;
     }
 
+    //Update 05.12.2019.
+    @Override
+    public double computeBenchmark() {
+        return gpu_speed*20 + cpu_speed*2 + ram/8 + storage/128;
+    }
+
+
 }
 
 //CHANGE ALL FIELDS "NAME" INTO CONSTANT

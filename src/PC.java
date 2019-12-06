@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Comparator;
+
 public abstract class PC extends  Item{
     protected String model; //max 15 characters
     protected String manufacturer; //max 30 characters
@@ -180,4 +183,20 @@ public abstract class PC extends  Item{
 
     @Override
     public abstract boolean equals(Object obj);
+
+    //Update 05.12.2019.
+    public abstract double computeBenchmark();
+
+    public static Comparator<PC> PCComparator = new Comparator<PC>() {
+        @Override
+        public int compare(PC pc1, PC pc2) {
+            if (pc1.computeBenchmark() - pc2.computeBenchmark() < 0 ) return -1;
+            if (pc1.computeBenchmark() - pc2.computeBenchmark() > 0 ) return 1;
+            return 0;
+        }
+    };
+
+
 }
+
+

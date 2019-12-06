@@ -51,4 +51,11 @@ public class Notebook extends PC{
         }
         return false;
     }
+
+    //Update 05.12.2019.
+    @Override
+    public double computeBenchmark() {
+        return cpu_speed*0.8 + ram/12 + storage/512;
+    }
+
 }
